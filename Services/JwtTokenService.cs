@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Flashcards.DTOs;
+using Flashcards.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
@@ -16,9 +17,9 @@ public class JwtTokenService
         _configuration = configuration;
     }
 
-    public AuthenticationResponse CreateToken(IdentityUser user)
+    public AuthenticationResponse CreateToken(User user)
     {
-        var expiration = DateTime.UtcNow.AddMinutes(_configuration.GetValue<int>("Jwt:ExpirationMinutes"));
+        var expiration = DateTime.UtcNow.AddMinutes(60);
         
         var token = CreateJwtToken(
             CreateClaims(user),

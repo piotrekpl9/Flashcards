@@ -1,4 +1,6 @@
+using System.Security.Claims;
 using Flashcards.DTOs;
+using Flashcards.Models;
 using Flashcards.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +10,7 @@ namespace Flashcards.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 public class UserController(
-    UserManager<IdentityUser> userManager,
+    UserManager<User> userManager,
     JwtTokenService jwtTokenService)
     : ControllerBase
 {
@@ -19,9 +21,15 @@ public class UserController(
         {
             return BadRequest(ModelState);
         }
-
+        
+        var userExist = await userManager.FindByNameAsync(user.UserName) != null || await userManager.FindByEmailAsync(user.UserName) != null;
+        if (userExist)
+        {
+            return BadRequest();
+        }
+        
         var result = await userManager.CreateAsync(
-            new IdentityUser() { UserName = user.UserName, Email = user.Email },
+            new User { UserName = user.UserName, Email = user.Email },
             user.Password
         );
 
@@ -30,7 +38,6 @@ public class UserController(
             return BadRequest(result.Errors);
         }
 
-        user.Password = null;
         return Created("", new CreateUserResponse { UserName = user.UserName, Email = user.Email });
     }
 
@@ -60,4 +67,8 @@ public class UserController(
 
         return Ok(token);
     }
+    
+  
 }
+
+
