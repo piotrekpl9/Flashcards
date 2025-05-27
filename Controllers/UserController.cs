@@ -11,7 +11,7 @@ namespace Flashcards.Controllers;
 [ApiController]
 public class UserController(
     UserManager<User> userManager,
-    JwtTokenService jwtTokenService)
+    TokenProvider tokenProvider)
     : ControllerBase
 {
     [HttpPost]
@@ -42,7 +42,7 @@ public class UserController(
     }
 
     [HttpPost("BearerToken")]
-    public async Task<ActionResult<AuthenticationResponse>> CreateBearerToken(LoginUser request)
+    public async Task<ActionResult<string>> CreateBearerToken(LoginUser request)
     {
         if (!ModelState.IsValid)
         {
@@ -63,7 +63,7 @@ public class UserController(
             return BadRequest("Bad credentials");
         }
 
-        var token = jwtTokenService.CreateToken(user);
+        var token = tokenProvider.Create(user);
 
         return Ok(token);
     }
