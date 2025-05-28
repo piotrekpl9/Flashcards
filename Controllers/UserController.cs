@@ -15,22 +15,22 @@ public class UserController(
     : ControllerBase
 {
     [HttpPost]
-    public async Task<ActionResult<CreateUserResponse>> PostUser(CreateUser user)
+    public async Task<ActionResult<UserDto>> PostUser(CreateUserDto userDto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
         
-        var userExist = await userManager.FindByNameAsync(user.UserName) != null || await userManager.FindByEmailAsync(user.UserName) != null;
+        var userExist = await userManager.FindByNameAsync(userDto.UserName) != null || await userManager.FindByEmailAsync(userDto.UserName) != null;
         if (userExist)
         {
             return BadRequest();
         }
         
         var result = await userManager.CreateAsync(
-            new User { UserName = user.UserName, Email = user.Email },
-            user.Password
+            new User { UserName = userDto.UserName, Email = userDto.Email },
+            userDto.Password
         );
 
         if (!result.Succeeded)
@@ -38,7 +38,7 @@ public class UserController(
             return BadRequest(result.Errors);
         }
 
-        return Created("", new CreateUserResponse { UserName = user.UserName, Email = user.Email });
+        return Created("", new UserDto { UserName = userDto.UserName, Email = userDto.Email });
     }
 
     [HttpPost("BearerToken")]

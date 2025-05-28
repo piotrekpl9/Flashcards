@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Flashcards.DTOs;
 
-public class CreateDeck
+public class CreateDeckDto
 {
     [Required]
     public string Name { get; set; } 
