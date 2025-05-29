@@ -3,6 +3,6 @@
 <ul>
     @foreach (var deck in Model)
     {
-        <li>@deck.Name</li>
+        <li>@deck.Name - <a href="/Deck/edit/@deck.Id">Edycja</a></li>
     }
 </ul>

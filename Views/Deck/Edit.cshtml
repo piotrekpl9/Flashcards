@@ -1,0 +1,25 @@
+@model Flashcards.Models.Deck
+
+<h2>Edit Deck</h2>
+<form asp-action="Edit" asp-route-id="@ViewBag.DeckId" method="post">
+    <p>Name: @Model.Name</p>
+    <p>SessionLimit: @Model.SessionLimit</p>
+    <p>DeckType: @Model.DeckType</p>
+    <div>
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" id="Name" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="SessionLimit">SessionLimit</label>
+        <input asp-for="SessionLimit" id="SessionLimit" type="number" />
+        <span asp-validation-for="SessionLimit" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="DeckType">DeckType</label>
+        <input asp-for="DeckType" id="DeckType" />
+        <span asp-validation-for="DeckType" class="text-danger"></span>
+    </div>
+    <button type="submit">Save</button>
+</form>
+<a href="/Deck">Back to list</a>

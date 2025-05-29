@@ -12,6 +12,7 @@ public class MappingProfile : Profile
         CreateMap<PublicFlashcard, PublicFlashcardDto>();
 
         CreateMap<Deck, DeckDto>();
+        CreateMap<Deck, CreateDeckDto>();
         CreateMap<PublicDeck, PublicDeckDto>();
 
     }

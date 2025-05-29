@@ -42,18 +42,27 @@ public class DeckController : Controller
 
             return View("Show", _mapper.Map<DeckDto>(deck));
         }
+        
+        [HttpGet("edit/{id}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var deck = await _deckService.GetById(id);
+            if (deck == null)
+                return NotFound();
 
-     
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDeck(int id, CreateDeckDto inputDeckDto)
+            var dto = _mapper.Map<CreateDeckDto>(deck);
+            ViewBag.DeckId = id;
+            return View(deck);
+        }
+        
+        [HttpPost("edit/{id}")]
+        public async Task<IActionResult> Edit(int id, CreateDeckDto inputDeckDto)
         {
             var result = await _deckService.Update(id, inputDeckDto, GetUserId());
             if (!result)
-            {
-              return BadRequest();
-            }
+                return BadRequest();
 
-            return NoContent();
+            return RedirectToAction("GetDeck", new { id });
         }
 
         [HttpPost]

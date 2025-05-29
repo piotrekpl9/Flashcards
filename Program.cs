@@ -45,20 +45,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGenWithAuth();
 
 builder.Services.AddScoped<DeckService>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseStaticFiles();
+app.UseRouting();
 app.UseAuthentication();
-
 app.UseAuthorization();
 app.MapControllers();
+app.MapDefaultControllerRoute();
 
 app.Run();

@@ -2,6 +2,7 @@ namespace Flashcards.DTOs;
 
 public class DeckDto
 {
+    public int Id { get; set; }
     public string Name { get; set; } = "";
 
     public int? SessionLimit { get; set; }
