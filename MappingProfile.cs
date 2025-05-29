@@ -13,7 +13,6 @@ public class MappingProfile : Profile
 
         CreateMap<Deck, DeckDto>();
         CreateMap<Deck, CreateDeckDto>();
-        CreateMap<PublicDeck, PublicDeckDto>();
 
     }
 }

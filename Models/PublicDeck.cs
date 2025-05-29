@@ -10,9 +10,4 @@ public class PublicDeck
     public string Name { get; set; } = "";
 
     public DateTime? ConfirmedAt { get; set; }
-
-    public virtual User? User { get; set; }
-    public string UserId { get; set; }
-
-    public virtual ICollection<PublicFlashcard> PublicFlashcards { get; set; } = new List<PublicFlashcard>();
 }

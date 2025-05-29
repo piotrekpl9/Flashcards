@@ -7,7 +7,4 @@ public class PublicFlashcard
     public string Front { get; set; } = "";
 
     public string Back { get; set; } = "";
-
-    public virtual PublicDeck? PublicDeck { get; set; }
-    public int PublicDeckId { get; set; }
 }
