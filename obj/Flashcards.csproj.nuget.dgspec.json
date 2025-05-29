@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/piotrpluta/Documents/GitHub/Flashcards/Flashcards.csproj": {}
+    "/Users/paweltrela/Ruby/Flashcards/Flashcards.csproj": {}
   },
   "projects": {
-    "/Users/piotrpluta/Documents/GitHub/Flashcards/Flashcards.csproj": {
+    "/Users/paweltrela/Ruby/Flashcards/Flashcards.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/piotrpluta/Documents/GitHub/Flashcards/Flashcards.csproj",
+        "projectUniqueName": "/Users/paweltrela/Ruby/Flashcards/Flashcards.csproj",
         "projectName": "Flashcards",
-        "projectPath": "/Users/piotrpluta/Documents/GitHub/Flashcards/Flashcards.csproj",
-        "packagesPath": "/Users/piotrpluta/.nuget/packages/",
-        "outputPath": "/Users/piotrpluta/Documents/GitHub/Flashcards/obj/",
+        "projectPath": "/Users/paweltrela/Ruby/Flashcards/Flashcards.csproj",
+        "packagesPath": "/Users/paweltrela/.nuget/packages/",
+        "outputPath": "/Users/paweltrela/Ruby/Flashcards/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/piotrpluta/.nuget/NuGet/NuGet.Config"
+          "/Users/paweltrela/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -45,7 +45,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[14.0.0, )"
+              "version": "[12.0.1, )"
             },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -111,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,8 @@
+@model IEnumerable<Flashcards.DTOs.DeckDto>
+
+<ul>
+    @foreach (var deck in Model)
+    {
+        <li>@deck.Name</li>
+    }
+</ul>

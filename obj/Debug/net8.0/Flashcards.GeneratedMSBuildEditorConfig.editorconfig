@@ -17,11 +17,19 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Flashcards
 build_property.RootNamespace = Flashcards
-build_property.ProjectDir = /Users/piotrpluta/Documents/GitHub/Flashcards/
+build_property.ProjectDir = /Users/paweltrela/Ruby/Flashcards/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/piotrpluta/Documents/GitHub/Flashcards
+build_property.MSBuildProjectDirectory = /Users/paweltrela/Ruby/Flashcards
 build_property._RazorSourceGeneratorDebug = 
+
+[/Users/paweltrela/Ruby/Flashcards/Views/Deck/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGVjay9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/paweltrela/Ruby/Flashcards/Views/Deck/Show.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGVjay9TaG93LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 

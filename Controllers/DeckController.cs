@@ -6,13 +6,11 @@ using Flashcards.Models;
 using Flashcards.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Flashcards.Controllers;
-[Authorize]
-[Route("api/[controller]")]
-[ApiController]
-public class DeckController : ControllerBase
+// [Authorize]
+[Route("[controller]")]
+public class DeckController : Controller
 {
     private readonly DeckService _deckService;
     private readonly ApplicationDbContext _context;
@@ -28,7 +26,8 @@ public class DeckController : ControllerBase
         public async Task<ActionResult<IEnumerable<DeckDto>>> GetDeck()
         {
             var decks = await _deckService.GetAll();
-            return  Ok(_mapper.Map<List<DeckDto>>(decks));
+            var deckDtos = _mapper.Map<List<DeckDto>>(decks);
+            return View("Index", deckDtos);
         }
         
         [HttpGet("{id}")]
@@ -41,7 +40,7 @@ public class DeckController : ControllerBase
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<DeckDto>(deck));
+            return View("Show", _mapper.Map<DeckDto>(deck));
         }
 
      
