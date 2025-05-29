@@ -37,3 +37,7 @@ build_metadata.AdditionalFiles.CssScope =
 [/Users/paweltrela/Ruby/Flashcards/Views/Deck/Show.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGVjay9TaG93LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/paweltrela/Ruby/Flashcards/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 

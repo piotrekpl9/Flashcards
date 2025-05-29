@@ -3,6 +3,7 @@ using System;
 using Flashcards.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Flashcards.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250529233545_RemovePublicDeckRelationFromDeck")]
+    partial class RemovePublicDeckRelationFromDeck
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.5");
@@ -30,6 +33,9 @@ namespace Flashcards.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("PublicDeckId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("SessionLimit")
                         .HasColumnType("INTEGER");
 
@@ -38,6 +44,8 @@ namespace Flashcards.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PublicDeckId");
 
                     b.HasIndex("UserId");
 
@@ -316,6 +324,10 @@ namespace Flashcards.Migrations
 
             modelBuilder.Entity("Flashcards.Models.Deck", b =>
                 {
+                    b.HasOne("Flashcards.Models.PublicDeck", null)
+                        .WithMany("Decks")
+                        .HasForeignKey("PublicDeckId");
+
                     b.HasOne("Flashcards.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -442,6 +454,8 @@ namespace Flashcards.Migrations
 
             modelBuilder.Entity("Flashcards.Models.PublicDeck", b =>
                 {
+                    b.Navigation("Decks");
+
                     b.Navigation("PublicFlashcards");
                 });
 #pragma warning restore 612, 618

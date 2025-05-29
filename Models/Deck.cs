@@ -14,9 +14,6 @@ public class Deck
     public virtual User? User { get; set; }
     
     public string? DeckType { get; set; }
-    public int? PublicDeckId { get; set; }
-
-    public PublicDeck? PublicDeck { get; set; }
     public virtual ICollection<Flashcard> Flashcards { get; set; } = new List<Flashcard>();
 
 }

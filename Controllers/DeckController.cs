@@ -52,7 +52,7 @@ public class DeckController : Controller
 
             var dto = _mapper.Map<CreateDeckDto>(deck);
             ViewBag.DeckId = id;
-            return View(deck);
+            return View(dto);
         }
         
         [HttpPost("edit/{id}")]
