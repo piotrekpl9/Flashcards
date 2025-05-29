@@ -13,9 +13,7 @@ public class ApplicationDbContext : IdentityUserContext<User>
     }
     
     public DbSet<Deck> Decks { get; set; } = default!;
-    public DbSet<PublicDeck> PublicDecks { get; set; } = default!;
     public DbSet<DeckSession> DeckSessions { get; set; } = default!;
     public DbSet<Flashcard> Flashcards { get; set; } = default!;
-    public DbSet<PublicFlashcard> PublicFlashcards { get; set; } = default!;
     public DbSet<FlashcardsQueue> FlashcardsQueues { get; set; } = default!;
 }

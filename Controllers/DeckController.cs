@@ -58,7 +58,7 @@ public class DeckController : Controller
         [HttpPost("edit/{id}")]
         public async Task<IActionResult> Edit(int id, CreateDeckDto inputDeckDto)
         {
-            var result = await _deckService.Update(id, inputDeckDto, GetUserId());
+            var result = await _deckService.Update(id, inputDeckDto);
             if (!result)
                 return BadRequest();
 

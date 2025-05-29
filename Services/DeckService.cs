@@ -41,23 +41,17 @@ public class DeckService
         return deck;
     }
     
-    public async Task<bool> Update(int id, CreateDeckDto inputDeckDto, string userId)
+    public async Task<bool> Update(int id, CreateDeckDto inputDeckDto)
     {
-        if (!DeckExists(id))
+        var deck = await _context.Decks.FindAsync(id);
+        if (deck == null)
         {
             return false;
         }
 
-        var deck = new Deck()
-        {
-            Id = id,
-            Name = inputDeckDto.Name,
-            UserId = userId,
-            SessionLimit = inputDeckDto.SessionLimit,
-            DeckType = inputDeckDto.DeckType,
-        };
-
-        _context.Entry(deck).State = EntityState.Modified;
+        deck.Name = inputDeckDto.Name;
+        deck.SessionLimit = inputDeckDto.SessionLimit;
+        deck.DeckType = inputDeckDto.DeckType;
 
         await _context.SaveChangesAsync();
         return true;
