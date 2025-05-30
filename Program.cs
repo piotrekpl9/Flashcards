@@ -30,6 +30,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<DeckService>();
+builder.Services.AddScoped<FlashcardService>();
 
 var app = builder.Build();
 

@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 namespace Flashcards.DTOs;
 
 public class CreateFlashcardDto
@@ -7,4 +9,6 @@ public class CreateFlashcardDto
     public string Back { get; set; } = "";
 
     public int DeckId { get; set; }
+    
+    public IEnumerable<SelectListItem> Decks { get; set; } = new List<SelectListItem>();
 }
