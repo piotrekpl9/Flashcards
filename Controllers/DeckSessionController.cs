@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using Flashcards.Data;
+using Flashcards.DTOs;
 using Flashcards.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,14 @@ public class DeckSessionController : Controller
         _flashcardService = flashcardService;
     }
 
-    [HttpPost("{deckId}")]
+    [HttpGet("decks/{deckId}")]
+    public async Task<IActionResult> New(int deckId)
+    {
+        ViewBag.DeckId = deckId;
+        return View("New");
+    }
+
+    [HttpPost("decks/{deckId}")]
     public async Task<IActionResult> Create(int deckId)
     {
         var userId = GetUserId();
@@ -38,9 +46,32 @@ public class DeckSessionController : Controller
 
         if (deckSession == null)
             return NotFound();
+        
+        return RedirectToAction("Play", new { deckSessionId = deckSession.Id });
+    }
+    
+    [HttpGet("deck_sessions/{deckSessionId}/play")]
+    public async Task<IActionResult> Play(int deckSessionId)
+    {
+        var userId = GetUserId();
+        var currentUser = await _context.Users
+            .Include(u => u.DeckSessions)
+            .FirstOrDefaultAsync(u => u.Id == userId);
 
-        var deckSessionDto = deckSessionService.MapToDeckSessionDTO(deckSession);
-        return Ok(deckSessionDto);
+        if (currentUser == null)
+            return Unauthorized();
+
+        var deckSession = currentUser.DeckSessions.FirstOrDefault(ds => ds.Id == deckSessionId);
+        if (deckSession == null)
+            return NotFound("Session not found");
+
+        if (deckSession.SessionLimit != null && deckSession.SessionLength >= deckSession.SessionLimit)
+            return BadRequest("Session limit reached");
+
+        var deckSessionService = new DeckSessionService(_context, _flashcardService);
+        var dto = deckSessionService.MapToDeckSessionDTO(deckSession);
+        
+        return View("Play", dto);
     }
     
     private string GetUserId()

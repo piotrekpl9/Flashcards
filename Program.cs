@@ -24,8 +24,6 @@ builder.Services
     .AddDefaultUI();
 
 
-builder.Services.AddSingleton<TokenProvider>();
-
 builder.Services.AddAuthorization();
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
