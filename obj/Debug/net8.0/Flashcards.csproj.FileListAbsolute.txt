@@ -224,16 +224,12 @@
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.DependencyModel.dll
-/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
-/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.Hosting.Abstractions.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.Identity.Core.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.Identity.Stores.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.Logging.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
-/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.ObjectPool.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.Primitives.dll
-/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.WebEncoders.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
@@ -257,8 +253,6 @@
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/System.Diagnostics.DiagnosticSource.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/System.IO.Pipelines.dll
-/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/System.Security.Cryptography.Pkcs.dll
-/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/System.Security.Cryptography.Xml.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/System.Text.Encodings.Web.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/System.Text.Json.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.resources.dll
@@ -347,7 +341,6 @@
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/runtimes/win-arm64/native/e_sqlite3.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/runtimes/win-x86/native/e_sqlite3.dll
-/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll
 /Users/paweltrela/Ruby/Flashcards/obj/Debug/net8.0/staticwebassets.build.json
 /Users/paweltrela/Ruby/Flashcards/obj/Debug/net8.0/staticwebassets.development.json
@@ -645,3 +638,13 @@
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.AspNetCore.Razor.Language.dll
 /Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.CodeAnalysis.Razor.dll
+/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Flashcards.staticwebassets.runtime.json
+/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/refs/Microsoft.Extensions.Diagnostics.Abstractions.dll
+/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/refs/Microsoft.Extensions.Hosting.Abstractions.dll
+/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/refs/Microsoft.Extensions.ObjectPool.dll
+/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/refs/Microsoft.Extensions.WebEncoders.dll
+/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/refs/System.Security.Cryptography.Xml.dll
+/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.AspNetCore.Identity.UI.dll
+/Users/paweltrela/Ruby/Flashcards/bin/Debug/net8.0/Microsoft.Extensions.FileProviders.Embedded.dll
+/Users/paweltrela/Ruby/Flashcards/obj/Debug/net8.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
+/Users/paweltrela/Ruby/Flashcards/obj/Debug/net8.0/scopedcss/projectbundle/Flashcards.bundle.scp.css

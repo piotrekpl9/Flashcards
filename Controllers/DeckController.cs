@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Flashcards.Controllers;
-// [Authorize]
+[Authorize]
 [Route("[controller]")]
 public class DeckController : Controller
 {
@@ -41,6 +41,29 @@ public class DeckController : Controller
             }
 
             return View("Show", _mapper.Map<DeckDto>(deck));
+        }
+        
+        [HttpGet("new")]
+        public IActionResult New()
+        {
+            return View(new CreateDeckDto());
+        }
+        
+        [HttpPost("new")]
+        public async Task<IActionResult> New(CreateDeckDto inputDeckDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(inputDeckDto);
+            }
+
+            var deck = await _deckService.Create(inputDeckDto, GetUserId());
+            if (deck == null)
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("GetDeck", new { id = deck.Id });
         }
         
         [HttpGet("edit/{id}")]
