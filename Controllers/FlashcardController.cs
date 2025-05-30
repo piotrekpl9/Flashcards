@@ -106,11 +106,16 @@ public class FlashcardController : Controller
     [HttpPost("{id}")]
     public async Task<IActionResult> DeleteFlashcard(int id)
     {
+        var flashcard = await _flashcardService.GetById(id);
+        if (flashcard == null)
+            return NotFound();
+
+        var deckId = flashcard.DeckId;
         var result = await _flashcardService.Delete(id);
         if (!result)
             return BadRequest();
 
-        return RedirectToAction("GetFlashcard");
+        return RedirectToAction("GetFlashcard", new { deckId });
     }
 
     private string GetUserId()

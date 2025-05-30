@@ -87,6 +87,16 @@ public class FlashcardService
             return true;
         }
         
+        public FlashcardDto MapToFlashcardDto(Flashcard flashcard)
+        {
+            return new FlashcardDto
+            {
+                Id = flashcard.Id,
+                Front = flashcard.Front,
+                Back = flashcard.Back
+            };
+        }
+        
         private bool DeckExists(int id)
         {
             return _context.Decks.Any(e => e.Id == id);
