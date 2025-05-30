@@ -46,10 +46,8 @@ public class DeckSessionController : Controller
 
         if (deckSession == null)
             return NotFound();
-
-        var deckSessionDto = deckSessionService.MapToDeckSessionDTO(deckSession);
         
-        return Ok(deckSessionDto);
+        return RedirectToAction("GetDeck", "Deck");
     }
     
     private string GetUserId()
