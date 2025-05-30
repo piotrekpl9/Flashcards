@@ -12,7 +12,7 @@ public class Deck
 
     public string UserId { get; set; }
     public virtual User? User { get; set; }
-    
+    public DeckStatus Status { get; set; }
     public string? DeckType { get; set; }
     public virtual ICollection<Flashcard> Flashcards { get; set; } = new List<Flashcard>();
 

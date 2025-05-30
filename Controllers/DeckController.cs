@@ -13,12 +13,10 @@ namespace Flashcards.Controllers;
 public class DeckController : Controller
 {
     private readonly DeckService _deckService;
-    private readonly ApplicationDbContext _context;
     private readonly IMapper _mapper;
 
-    public DeckController(ApplicationDbContext context, IMapper mapper, DeckService deckService)
+    public DeckController(IMapper mapper, DeckService deckService)
     {
-        _context = context;
         _mapper = mapper;
         _deckService = deckService;
     }

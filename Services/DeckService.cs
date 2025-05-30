@@ -22,6 +22,44 @@ public class DeckService
             .Include(deck => deck.Flashcards)
             .ToListAsync();
     }
+    
+    public async Task<IEnumerable<Deck>> GetPendingDecks()
+    {
+        return await _context.Decks
+            .Include(e => e.User)
+            .Include(deck => deck.Flashcards)
+            .Where(deck => deck.Status == DeckStatus.Pending)
+            .ToListAsync();
+    }
+    
+    public async Task<bool> ApproveDeck(int id)
+    {
+        var deck = await _context.Decks.FindAsync(id);
+        if (deck == null)
+        {
+            return false;
+        }
+     
+        deck.Status = DeckStatus.Accepted;
+
+        await _context.SaveChangesAsync();
+        return true;
+    }
+    
+    public async Task<bool> RejectDeck(int id)
+    {
+        var deck = await _context.Decks.FindAsync(id);
+        if (deck == null)
+        {
+            return false;
+        }
+     
+        deck.Status = DeckStatus.Rejected;
+
+        await _context.SaveChangesAsync();
+        return true;
+    }
+    
     public async Task<Deck?> GetById(int id)
     {
         return await _context.Decks.Where(deck => deck.Id == id).Include(deck => deck.Flashcards).FirstOrDefaultAsync();

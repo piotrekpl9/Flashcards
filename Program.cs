@@ -1,6 +1,7 @@
 using Flashcards.Data;
 using Flashcards.Models;
 using Flashcards.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContext' not found.")));
 
 builder.Services
-    .AddDefaultIdentity<User>(options =>
+    .AddIdentity<User, IdentityRole>(options =>
     {
         options.SignIn.RequireConfirmedAccount = false;
         options.User.RequireUniqueEmail = true;
@@ -19,7 +20,8 @@ builder.Services
         options.Password.RequireUppercase = false;
         options.Password.RequireLowercase = false;
     })
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultUI();
 
 
 builder.Services.AddSingleton<TokenProvider>();
@@ -41,5 +43,9 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
-
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await DataSeeder.SeedUsersAndRolesAsync(services);
+}
 app.Run();
