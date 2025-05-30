@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using Flashcards.Data;
+using Flashcards.DTOs;
 using Flashcards.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,14 @@ public class DeckSessionController : Controller
         _flashcardService = flashcardService;
     }
 
-    [HttpPost("{deckId}")]
+    [HttpGet("decks/{deckId}")]
+    public async Task<IActionResult> New(int deckId)
+    {
+        ViewBag.DeckId = deckId;
+        return View("New");
+    }
+
+    [HttpPost("decks/{deckId}")]
     public async Task<IActionResult> Create(int deckId)
     {
         var userId = GetUserId();
@@ -40,6 +48,7 @@ public class DeckSessionController : Controller
             return NotFound();
 
         var deckSessionDto = deckSessionService.MapToDeckSessionDTO(deckSession);
+        
         return Ok(deckSessionDto);
     }
     
