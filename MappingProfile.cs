@@ -9,6 +9,7 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<Flashcard, FlashcardDto>();
+        CreateMap<Flashcard, CreateFlashcardDto>();
 
         CreateMap<Deck, DeckDto>();
         CreateMap<Deck, CreateDeckDto>();

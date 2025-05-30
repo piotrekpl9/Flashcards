@@ -51,9 +51,7 @@ public class FlashcardController : Controller
     [HttpGet("new")]
     public IActionResult New()
     {
-        var decks = _context.Decks
-            .Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name })
-            .ToList();
+        var decks = GetUserDecks();
 
         var model = new CreateFlashcardDto
         {
@@ -78,13 +76,21 @@ public class FlashcardController : Controller
     [HttpGet("edit/{id}")]
     public async Task<IActionResult> Edit(int id)
     {
+        var decks = GetUserDecks();
+        
         var flashcard = await _flashcardService.GetById(id);
         if (flashcard == null)
             return NotFound();
+        
+        var model = new CreateFlashcardDto
+        {
+            Front = flashcard.Front,
+            Back = flashcard.Back,
+            Decks = decks
+        };
 
-        var dto = _mapper.Map<CreateFlashcardDto>(flashcard);
         ViewBag.FlashcardId = id;
-        return View(dto);
+        return View(model);
     }
 
     [HttpPost("edit/{id}")]
@@ -110,5 +116,13 @@ public class FlashcardController : Controller
     private string GetUserId()
     {
         return User.FindFirstValue(ClaimTypes.NameIdentifier) ?? string.Empty;
+    }
+    
+    private List<SelectListItem> GetUserDecks()
+    {
+        return _context.Decks
+            .Where(d => d.UserId == GetUserId())
+            .Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name })
+            .ToList();
     }
 }

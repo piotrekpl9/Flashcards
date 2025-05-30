@@ -1,0 +1,18 @@
+@model Flashcards.DTOs.CreateFlashcardDto
+
+<h2>Edit Flashcard</h2>
+<form asp-action="Edit" asp-route-id="@ViewBag.FlashcardId" method="post">
+    <div>
+        <label asp-for="Front"></label>
+        <input asp-for="Front" />
+    </div>
+    <div>
+        <label asp-for="Back"></label>
+        <input asp-for="Back" />
+    </div>
+    <div>
+        <label asp-for="DeckId"></label>
+        <select asp-for="DeckId" asp-items="Model.Decks"></select>
+    </div>
+    <button type="submit">Update</button>
+</form>

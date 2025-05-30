@@ -46,12 +46,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGVjay9TaG93LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/paweltrela/Ruby/Flashcards/Views/Flashcard/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmxhc2hjYXJkL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/paweltrela/Ruby/Flashcards/Views/Flashcard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmxhc2hjYXJkL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/paweltrela/Ruby/Flashcards/Views/Flashcard/New.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmxhc2hjYXJkL05ldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/paweltrela/Ruby/Flashcards/Views/Flashcard/Show.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmxhc2hjYXJkL1Nob3cuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/paweltrela/Ruby/Flashcards/Views/Shared/Error.cshtml]
