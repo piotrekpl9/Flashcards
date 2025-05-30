@@ -25,7 +25,7 @@ public class DeckController : Controller
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DeckDto>>> GetDeck()
         {
-            var decks = await _deckService.GetAll();
+            var decks = await _deckService.GetAll(GetUserId());
             var deckDtos = _mapper.Map<List<DeckDto>>(decks);
             return View("Index", deckDtos);
         }
@@ -96,7 +96,7 @@ public class DeckController : Controller
             return CreatedAtAction("GetDeck", new { id = deck.Id }, dto);
         }
 
-        [HttpDelete("{id}")]
+        [HttpPost("{id}")]
         public async Task<IActionResult> DeleteDeck(int id)
         {
             var result = await _deckService.Delete(id);
@@ -104,7 +104,7 @@ public class DeckController : Controller
             {
                 return BadRequest();
             }
-            return NoContent();
+            return RedirectToAction("GetDeck");
         }
 
         private string GetUserId()

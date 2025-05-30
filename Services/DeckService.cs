@@ -14,9 +14,10 @@ public class DeckService
         _context = context;
     }
 
-    public async Task<IEnumerable<Deck>> GetAll()
+    public async Task<IEnumerable<Deck>> GetAll(string userId)
     {
         return await _context.Decks
+            .Where(deck => deck.UserId == userId)
             .Include(e => e.User)
             .Include(deck => deck.Flashcards)
             .ToListAsync();
