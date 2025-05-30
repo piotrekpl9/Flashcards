@@ -1,0 +1,14 @@
+@model Flashcards.DTOs.DeckSessionDto
+
+<h2>Deck Session</h2>
+
+<div>
+    <ul>
+        <li>Length: @Model.SessionLength</li>
+        <li>Limit: @Model.SessionLimit</li>
+        <li>@Model.FlashcardQueues.Count()</li>
+        <li><strong>Front:</strong> @Model.NextFlashcardQueue?.Flashcard?.Front</li>
+        <li><strong>Back:</strong> @Model.NextFlashcardQueue?.Flashcard?.Back</li>
+        <!-- Add more properties as needed -->
+    </ul>
+</div>

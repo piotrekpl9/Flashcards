@@ -47,7 +47,31 @@ public class DeckSessionController : Controller
         if (deckSession == null)
             return NotFound();
         
-        return RedirectToAction("GetDeck", "Deck");
+        return RedirectToAction("Play", new { deckSessionId = deckSession.Id });
+    }
+    
+    [HttpGet("deck_sessions/{deckSessionId}/play")]
+    public async Task<IActionResult> Play(int deckSessionId)
+    {
+        var userId = GetUserId();
+        var currentUser = await _context.Users
+            .Include(u => u.DeckSessions)
+            .FirstOrDefaultAsync(u => u.Id == userId);
+
+        if (currentUser == null)
+            return Unauthorized();
+
+        var deckSession = currentUser.DeckSessions.FirstOrDefault(ds => ds.Id == deckSessionId);
+        if (deckSession == null)
+            return NotFound("Session not found");
+
+        if (deckSession.SessionLimit != null && deckSession.SessionLength >= deckSession.SessionLimit)
+            return BadRequest("Session limit reached");
+
+        var deckSessionService = new DeckSessionService(_context, _flashcardService);
+        var dto = deckSessionService.MapToDeckSessionDTO(deckSession);
+        
+        return View("Play", dto);
     }
     
     private string GetUserId()
