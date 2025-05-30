@@ -5,13 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Flashcards.Data;
 
-public class ApplicationDbContext : IdentityDbContext<User>
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    : IdentityDbContext<User>(options)
 {
-    public ApplicationDbContext (DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
-    }
-    
     public DbSet<Deck> Decks { get; set; } = default!;
     public DbSet<DeckSession> DeckSessions { get; set; } = default!;
     public DbSet<Flashcard> Flashcards { get; set; } = default!;
