@@ -30,7 +30,7 @@ public class FlashcardController : Controller
     public async Task<IActionResult> GetFlashcard([FromQuery] int? deckId)
     {
         if (deckId == null)
-            return BadRequest("deckId is required.");
+            return NotFound();
 
         var flashcards = await _flashcardService.GetAll(GetUserId());
         var filtered = flashcards.Where(f => f.DeckId == deckId.Value).ToList();
