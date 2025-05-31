@@ -33,7 +33,7 @@ public class DeckController : Controller
         {
             var deck = await _deckService.GetById(id);
 
-            if (deck == null)
+            if (deck == null || deck.UserId != GetUserId())
             {
                 return NotFound();
             }
@@ -68,7 +68,7 @@ public class DeckController : Controller
         public async Task<IActionResult> Edit(int id)
         {
             var deck = await _deckService.GetById(id);
-            if (deck == null)
+            if (deck == null || deck.UserId != GetUserId())
                 return NotFound();
 
             var dto = _mapper.Map<CreateDeckDto>(deck);
@@ -97,6 +97,11 @@ public class DeckController : Controller
         [HttpPost("{id}")]
         public async Task<IActionResult> DeleteDeck(int id)
         {
+            var deck = await _deckService.GetById(id);
+            if (deck == null || deck.UserId != GetUserId())
+            {
+                return NotFound();
+            }
             var result = await _deckService.Delete(id);
             if (!result)
             {
