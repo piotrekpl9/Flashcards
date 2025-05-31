@@ -1,6 +1,7 @@
 using Flashcards.Data;
 using Flashcards.DTOs;
 using Flashcards.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flashcards.Services;
 
@@ -19,7 +20,14 @@ public class DeckSessionService
     {
         var deck = currentUser.Decks.FirstOrDefault(d => d.Id == deckId);
         if (deck == null)
-            return null;
+        {
+            deck = await _context.Decks
+                .Where(d => d.Id == deckId && d.Status == DeckStatus.Accepted)
+                .Include(d => d.Flashcards)
+                .FirstOrDefaultAsync();
+            if (deck == null)
+                return null;
+        }
 
         var deckSession = new DeckSession
         {
