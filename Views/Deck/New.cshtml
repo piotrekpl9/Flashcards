@@ -11,7 +11,7 @@
 </style>
 }
 @{
-Layout = "_Layout";
+    Layout = "_Layout";
 }
 
 <div class="card">
@@ -20,17 +20,21 @@ Layout = "_Layout";
     </div>
     <div class="card-body">
         <form asp-action="New" method="post">
-            
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
             <div class="mb-3">
                 <label asp-for="Name" class="form-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control"/>
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+
             </div>
             <div class="mb-3">
                 <label asp-for="SessionLimit" class="form-label"></label>
                 <input asp-for="SessionLimit" class="form-control" type="number"/>
+                @Html.ValidationMessageFor(m => m.SessionLimit, "", new { @class = "text-danger" })
             </div>
             <div class="text-end">
-            <button type="submit" class="btn btn-success">Create</button></div>
+                <button type="submit" class="btn btn-success">Create</button></div>
         </form>    
         </div>
 </div>
