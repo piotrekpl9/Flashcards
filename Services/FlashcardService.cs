@@ -50,7 +50,7 @@ public class FlashcardService
             return true;
         }
 
-        public async Task<Flashcard?> Create(CreateFlashcardDto inputFlashcardDto, string userId)
+        public async Task<Flashcard?> Create(CreateFlashcardDto inputFlashcardDto, string userId, int deckId)
         {
             if (!DeckExists(inputFlashcardDto.DeckId))
             {
@@ -61,9 +61,9 @@ public class FlashcardService
                 UserId = userId,
                 Front = inputFlashcardDto.Front,
                 Back = inputFlashcardDto.Back,
-                DeckId = inputFlashcardDto.DeckId,
+                DeckId = deckId,
             };
-            if (!DeckExists(inputFlashcardDto.DeckId))
+            if (!DeckExists(deckId))
             {
                 return null;
             }

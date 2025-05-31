@@ -7,6 +7,7 @@ using Flashcards.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flashcards.Controllers;
 
@@ -40,8 +41,10 @@ public class FlashcardController : Controller
     [HttpGet("{id}")]
     public async Task<IActionResult> GetFlashcard(int id)
     {
-        var flashcard = await _flashcardService.GetById(id);
-        if (flashcard == null)
+        var flashcard = await _context.Flashcards
+            .Include(f => f.Deck)
+            .FirstOrDefaultAsync(f => f.Id == id);
+        if (flashcard == null || flashcard.Deck == null || flashcard.Deck.UserId != GetUserId())
             return NotFound();
 
         var dto = _mapper.Map<FlashcardDto>(flashcard);
@@ -66,8 +69,14 @@ public class FlashcardController : Controller
     {
         if (!ModelState.IsValid)
             return View(inputFlashcardDto);
+        
+        var deck = await _context.Decks
+            .FirstOrDefaultAsync(d => d.Id == inputFlashcardDto.DeckId && d.UserId == GetUserId());
+        
+        if (deck == null)
+            return NotFound();
 
-        var flashcard = await _flashcardService.Create(inputFlashcardDto, GetUserId());
+        var flashcard = await _flashcardService.Create(inputFlashcardDto, GetUserId(), deck.Id);
         if (flashcard == null)
             return BadRequest();
 
