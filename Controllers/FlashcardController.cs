@@ -32,7 +32,7 @@ public class FlashcardController : Controller
         if (deckId == null)
             return BadRequest("deckId is required.");
 
-        var flashcards = await _flashcardService.GetAll();
+        var flashcards = await _flashcardService.GetAll(GetUserId());
         var filtered = flashcards.Where(f => f.DeckId == deckId.Value).ToList();
         var dtos = filtered.Select(f => _mapper.Map<FlashcardDto>(f)).ToList();
         return View("Index", dtos);
@@ -85,17 +85,17 @@ public class FlashcardController : Controller
     [HttpGet("edit/{id}")]
     public async Task<IActionResult> Edit(int id)
     {
-        var decks = GetUserDecks();
+        var flashcard = await _context.Flashcards
+            .Include(f => f.Deck)
+            .FirstOrDefaultAsync(f => f.Id == id);
         
-        var flashcard = await _flashcardService.GetById(id);
-        if (flashcard == null)
+        if (flashcard == null || flashcard.Deck == null || flashcard.Deck.UserId != GetUserId())
             return NotFound();
         
         var model = new CreateFlashcardDto
         {
             Front = flashcard.Front,
-            Back = flashcard.Back,
-            Decks = decks
+            Back = flashcard.Back
         };
 
         ViewBag.FlashcardId = id;
@@ -105,9 +105,12 @@ public class FlashcardController : Controller
     [HttpPost("edit/{id}")]
     public async Task<IActionResult> Edit(int id, CreateFlashcardDto inputFlashcardDto)
     {
+        if (!ModelState.IsValid)
+            return View(inputFlashcardDto);
+
         var result = await _flashcardService.Update(id, inputFlashcardDto, GetUserId());
         if (!result)
-            return BadRequest();
+            return NotFound(); // or return a specific error view/message
 
         return RedirectToAction("GetFlashcard", new { id });
     }
