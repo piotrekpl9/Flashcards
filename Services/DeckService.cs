@@ -2,6 +2,7 @@ using Flashcards.Data;
 using Flashcards.DTOs;
 using Flashcards.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Flashcards.Services;
 
@@ -38,13 +39,24 @@ public class DeckService
             .Where(deck => deck.UserId == userId && deck.Status == DeckStatus.Accepted)
             .ToListAsync();
     }
-    public async Task<IEnumerable<Deck>> GetPendingDecks()
+    public async Task<IEnumerable<Deck>> GetPendingDecks(string? name)
     {
-        return await _context.Decks
-            .Include(e => e.User)
-            .Include(deck => deck.Flashcards)
-            .Where(deck => deck.Status == DeckStatus.Pending)
-            .ToListAsync();
+        if (name.IsNullOrEmpty())
+        {
+            return await _context.Decks
+                .Include(e => e.User)
+                .Include(deck => deck.Flashcards)
+                .Where(deck => deck.Status == DeckStatus.Pending)
+                .ToListAsync();
+        }
+        else
+        {
+            return await _context.Decks
+                .Include(e => e.User)
+                .Include(deck => deck.Flashcards)
+                .Where(deck => deck.Status == DeckStatus.Pending && deck.Name.Contains(name))
+                .ToListAsync();
+        }
     }
     public async Task<bool> AcceptDeck(int id)
     {

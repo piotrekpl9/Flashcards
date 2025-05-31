@@ -19,9 +19,9 @@ public class AdminController : Controller
     }
 
     [HttpGet("pending-decks")]
-    public async Task<ActionResult<IEnumerable<DeckDto>>> GetPendingDecks()
+    public async Task<ActionResult<IEnumerable<DeckDto>>> GetPendingDecks([FromQuery] string? name)
     {
-        var pendingDecks = await _deckService.GetPendingDecks();
+        var pendingDecks = await _deckService.GetPendingDecks(name);
         var deckDtos = _mapper.Map<List<DeckDto>>(pendingDecks);
         return View("Index", deckDtos);
     }

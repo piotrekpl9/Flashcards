@@ -1,4 +1,9 @@
 <ul>
+    <form asp-action="GetPendingDecks" method="get" >
+        <input name="name" />
+        <button type="submit">Search</button>
+    </form>
+
     @foreach (var deck in Model)
     {
         <li>
