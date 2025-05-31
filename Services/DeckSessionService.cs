@@ -58,6 +58,16 @@ public class DeckSessionService
         };
     }
     
+    public async Task IncrementSessionLength(int deckSessionId)
+    {
+        var deckSession = await _context.DeckSessions.FindAsync(deckSessionId);
+        if (deckSession == null)
+            throw new InvalidOperationException("DeckSession not found");
+
+        deckSession.SessionLength++;
+        await _context.SaveChangesAsync();
+    }
+    
     private FlashcardQueueDto MapToFlashcardsQueueDto(FlashcardsQueue flashcardsQueue)
     {
         return new FlashcardQueueDto
@@ -79,7 +89,8 @@ public class DeckSessionService
             DeckSession = deckSession,
             DeckSessionId = deckSession.Id,
             Flashcard = flashcard,
-            FlashcardId = flashcard.Id
+            FlashcardId = flashcard.Id,
+            NextRunAt = DateTime.UtcNow,
         };
         _context.FlashcardsQueues.Add(queue);
     }
