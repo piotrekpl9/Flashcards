@@ -26,6 +26,8 @@ public class DeckSessionController : Controller
     {
         _context = context;
         _flashcardService = flashcardService;
+        _flashcardsQueueService = flashcardsQueueService;
+        _deckSessionService = deckSessionService;
     }
 
     [HttpPost("decks/{deckId}")]
@@ -77,9 +79,8 @@ public class DeckSessionController : Controller
         return View("Play", dto);
     }
     
-    [HttpPatch("deck_sessions/{deckSessionId}/answer")]
-    public async Task<IActionResult> Update(int deckSessionId, [FromBody] AnswerQuestionDto answerQuestionDto)
-    {
+    [HttpPost("deck_sessions/{deckSessionId}/answer")]
+    public async Task<IActionResult> Update(int deckSessionId, AnswerQuestionDto answerQuestionDto)    {
         var userId = GetUserId();
         var currentUser = await _context.Users
             .Include(u => u.DeckSessions)
