@@ -9,7 +9,7 @@ namespace Flashcards.Controllers;
 [Controller]
 public class AccountController : Controller
 {
-     private readonly UserManager<User> _userManager;
+    private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
 
     public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)

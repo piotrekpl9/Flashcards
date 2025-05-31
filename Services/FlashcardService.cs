@@ -98,10 +98,5 @@ public class FlashcardService
         {
             return _context.Decks.Any(e => e.Id == id);
         }
-
-        private bool FlashcardExists(int id)
-        {
-            return _context.Flashcards.Any(e => e.Id == id);
-        }
     
 }
