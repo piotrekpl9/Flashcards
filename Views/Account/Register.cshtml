@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Register";
+}
+<h2>Register</h2>
+
+<form asp-action="Register" method="post">
+    <input name="email" placeholder="Email" />
+    <input name="password" type="password" placeholder="Password" />
+    <button type="submit">Register</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <p style="color:red;">Registration failed</p>
+}

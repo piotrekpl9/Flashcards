@@ -1,8 +1,5 @@
 @model IEnumerable<Flashcards.DTOs.DeckDto>
-<a href="/">Back to home page</a><br/>
-<a href="/Deck/new">Add</a>
-
-<p>My decks</p>
+<h2>Decki gracza: @ViewBag.DeckOwnerName</h2>
 <ul>
     @foreach (var deck in Model)
     {

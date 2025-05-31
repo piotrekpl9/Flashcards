@@ -1,0 +1,14 @@
+@model IEnumerable<Flashcards.DTOs.DeckDto>
+
+<p>Explore Decks</p>
+<ul>
+    @foreach (var deck in Model)
+    {
+        <li>
+            @deck.Name - 
+            <a href="user/@deck.UserId/deck">Decki gracza</a>
+            <a href="/Flashcard?deckId=@deck.Id">Flashcards</a>
+            <a href="/DeckSession/decks/@deck.Id">Start Session</a>
+        </li>
+    }
+</ul>

@@ -22,7 +22,22 @@ public class DeckService
             .Include(deck => deck.Flashcards)
             .ToListAsync();
     }
-    
+    public async Task<IEnumerable<Deck>> GetAllPublic()
+    {
+        return await _context.Decks
+            .Include(e => e.User)
+            .Include(deck => deck.Flashcards)
+            .Where(deck =>  deck.Status == DeckStatus.Accepted)
+            .ToListAsync();
+    }
+    public async Task<IEnumerable<Deck>> GetUserPublicDecks(string userId)
+    {
+        return await _context.Decks
+            .Include(e => e.User)
+            .Include(deck => deck.Flashcards)
+            .Where(deck => deck.UserId == userId && deck.Status == DeckStatus.Accepted)
+            .ToListAsync();
+    }
     public async Task<IEnumerable<Deck>> GetPendingDecks()
     {
         return await _context.Decks
@@ -31,8 +46,7 @@ public class DeckService
             .Where(deck => deck.Status == DeckStatus.Pending)
             .ToListAsync();
     }
-    
-    public async Task<bool> ApproveDeck(int id)
+    public async Task<bool> AcceptDeck(int id)
     {
         var deck = await _context.Decks.FindAsync(id);
         if (deck == null)

@@ -6,6 +6,7 @@ using Flashcards.Models;
 using Flashcards.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Flashcards.Controllers;
 [Authorize]
@@ -20,6 +21,26 @@ public class DeckController : Controller
         _mapper = mapper;
         _deckService = deckService;
     }
+
+
+    [Route("explore")]
+    public async Task<ActionResult<IEnumerable<DeckDto>>> Explore()
+    {
+        var decks = await _deckService.GetAllPublic();
+        var deckDtos = _mapper.Map<List<DeckDto>>(decks);
+
+        return View("Explore", deckDtos);
+    }
+
+    [Route("user/{userId}/deck")]
+    public async Task<ActionResult<IEnumerable<DeckDto>>> UserDecks(string userId)
+    {
+        var decks = await _deckService.GetUserPublicDecks(userId);
+        var deckDtos = _mapper.Map<List<DeckDto>>(decks);
+        ViewBag.DeckOwnerName = decks.FirstOrDefault()?.User?.Email ?? string.Empty;
+        return View("UserDecks", deckDtos);
+    }
+    
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DeckDto>>> GetDeck()
         {

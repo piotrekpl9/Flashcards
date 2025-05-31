@@ -1,15 +1,15 @@
 @{
-    ViewData["Title"] = "Login";
+ViewData["Title"] = "Login";
 }
 <h2>Login</h2>
+
 <form asp-action="Login" method="post">
-    <div>
-        <label>Email</label>
-        <input name="email" type="email" required />
-    </div>
-    <div>
-        <label>Password</label>
-        <input name="password" type="password" required />
-    </div>
+    <input name="email" placeholder="Email" />
+    <input name="password" type="password" placeholder="Password" />
     <button type="submit">Login</button>
 </form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+<p style="color:red;">Login failed</p>
+}

@@ -1,0 +1,27 @@
+@page
+@{
+ViewBag.Title = "Home Page";
+}
+
+<h1>Welcome on home page</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Hello @User.Identity.Name</h1>
+    @if (User.IsInRole("Admin"))
+    {
+        <a href="/Admin/pending-decks">View pending decks</a>
+    }
+    
+    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+        <button type="submit">Logout</button>
+    </form>
+
+    <a href="/Deck">My decks</a><br/>
+    <a href="/Deck/explore">Explore decks</a>
+}
+else
+{
+    <p>This is unathenticated content.</p>
+    <a href="/Account/Login">Log in</a><br/>
+    <a href="/Account/Register">Register</a>
+}

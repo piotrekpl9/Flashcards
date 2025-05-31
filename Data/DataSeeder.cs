@@ -20,9 +20,8 @@ public class DataSeeder
             }
         }
 
-        // Seed default admin user
         string adminEmail = "admin@flashcards.com";
-        string adminPassword = "Admin123";
+            string adminPassword = "Admin123";
 
         if (await userManager.FindByEmailAsync(adminEmail) == null)
         {

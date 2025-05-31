@@ -29,15 +29,15 @@ public class AdminController : Controller
     [HttpPost("decks/{id}/approve")]
     public async Task<IActionResult> ApproveDeck(int id)
     {
-        var result = await _deckService.ApproveDeck(id);
+        var result = await _deckService.AcceptDeck(id);
         if (!result)
         {
             return BadRequest();
         }
-        return Ok();
+        return RedirectToAction("GetPendingDecks");
+
     }
     
-    // POST: /admin/decks/{id}/reject
     [HttpPost("decks/{id}/reject")]
     public async Task<IActionResult> RejectDeck(int id)
     {
@@ -46,6 +46,7 @@ public class AdminController : Controller
         {
             return BadRequest();
         }
-        return Ok();
+        return RedirectToAction("GetPendingDecks");
+
     }
 }
