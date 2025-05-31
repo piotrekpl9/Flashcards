@@ -42,9 +42,9 @@ public class DeckController : Controller
     }
     
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DeckDto>>> GetDeck()
+        public async Task<ActionResult<IEnumerable<DeckDto>>> GetDeck([FromQuery] string? name)
         {
-            var decks = await _deckService.GetAll(GetUserId());
+            var decks = await _deckService.GetAll(GetUserId(), name);
             var deckDtos = _mapper.Map<List<DeckDto>>(decks);
             
             @ViewBag.UserId = GetUserId();

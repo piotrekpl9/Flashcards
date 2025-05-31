@@ -15,10 +15,15 @@ public class DeckService
         _context = context;
     }
 
-    public async Task<IEnumerable<Deck>> GetAll(string userId)
+    public async Task<IEnumerable<Deck>> GetAll(string userId, string? name)
     {
-        return await _context.Decks
-            .Where(deck => deck.UserId == userId)
+        var query = _context.Decks
+            .Where(deck => deck.UserId == userId);
+        if (!string.IsNullOrEmpty(name))
+        {
+            query = query.Where(deck => deck.Name != null && deck.Name.Contains(name));
+        }
+        return await query
             .Include(e => e.User)
             .Include(deck => deck.Flashcards)
             .ToListAsync();
@@ -143,3 +148,5 @@ public class DeckService
         return _context.Decks.Any(e => e.Id == id);
     }
 }
+
+

@@ -10,6 +10,12 @@ Layout = "_Layout";
         Lista Decków
     </div>
     <div class="card-body">
+        <div class="mb-1">
+            <form asp-action="GetDeck" method="get" >
+                <input name="name" />
+                <button type="submit" class="btn btn-sm btn-primary">Szukaj</button>
+            </form>
+        </div>
         <div class="mb-3">
             <a href="/Deck" class="btn btn-info">Moje decki</a>
             <a href="/Deck/explore" class="btn btn-info">Publiczne decki</a>
