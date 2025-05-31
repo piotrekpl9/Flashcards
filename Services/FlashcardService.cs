@@ -16,10 +16,12 @@ public class FlashcardService
         _context = context;
     }
     
-        public async Task<IEnumerable<Flashcard>> GetAll()
+        public async Task<IEnumerable<Flashcard>> GetAll(string userId)
         {
             return await _context.Flashcards
                 .Include(e => e.User)
+                .Include(flashcard => flashcard.Deck)
+                .Where(flashcard => flashcard.Deck.UserId == userId)
                 .ToListAsync();
         }
         
@@ -31,20 +33,15 @@ public class FlashcardService
 
         public async Task<bool> Update(int id, CreateFlashcardDto inputFlashcardDto, string userId)
         {
-            if (!DeckExists(inputFlashcardDto.DeckId) || !FlashcardExists(id))
-            {
-                return false;                
-            }
-            var flashcard = new Flashcard()
-            {
-                Id = id,
-                UserId = userId,
-                Front = inputFlashcardDto.Front,
-                Back = inputFlashcardDto.Back,
-                DeckId = inputFlashcardDto.DeckId,
-            };
+            var flashcardDb = await _context.Flashcards
+                .Include(f => f.Deck)
+                .FirstOrDefaultAsync(ds => ds.Id == id && ds.Deck.UserId == userId);
 
-            _context.Entry(flashcard).State = EntityState.Modified;
+            if (flashcardDb == null)
+                return false;
+
+            flashcardDb.Front = inputFlashcardDto.Front;
+            flashcardDb.Back = inputFlashcardDto.Back;
 
             await _context.SaveChangesAsync();
             return true;
