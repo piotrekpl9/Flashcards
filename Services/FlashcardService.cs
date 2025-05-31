@@ -31,20 +31,20 @@ public class FlashcardService
         }
 
 
-        public async Task<bool> Update(int id, CreateFlashcardDto inputFlashcardDto, string userId)
+        public async Task<Flashcard?> Update(int id, CreateFlashcardDto inputFlashcardDto, string userId)
         {
             var flashcardDb = await _context.Flashcards
                 .Include(f => f.Deck)
                 .FirstOrDefaultAsync(ds => ds.Id == id && ds.Deck.UserId == userId);
 
             if (flashcardDb == null)
-                return false;
+                return null;
 
             flashcardDb.Front = inputFlashcardDto.Front;
             flashcardDb.Back = inputFlashcardDto.Back;
 
             await _context.SaveChangesAsync();
-            return true;
+            return flashcardDb;
         }
 
         public async Task<Flashcard?> Create(CreateFlashcardDto inputFlashcardDto, string userId, int deckId)

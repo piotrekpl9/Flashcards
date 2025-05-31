@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
 namespace Flashcards.Models;
@@ -6,8 +7,10 @@ public class Flashcard
 {
     public int Id { get; set; }
     
+    [Display(Name = "Pytanie")]
     public string Front { get; set; } = "";
 
+    [Display(Name = "Odpowiedź")]
     public string Back { get; set; } = "";
 
     public virtual User User { get; set; }

@@ -96,11 +96,11 @@ public class FlashcardController : Controller
         if (!ModelState.IsValid)
             return View(inputFlashcardDto);
 
-        var result = await _flashcardService.Update(id, inputFlashcardDto, GetUserId());
-        if (!result)
+        var updatedFlashcard = await _flashcardService.Update(id, inputFlashcardDto, GetUserId());
+        if (updatedFlashcard == null)
             return NotFound();
 
-        return RedirectToAction("GetFlashcard");
+        return RedirectToAction("GetFlashcard", new { deckId = updatedFlashcard.Deck.Id });
     }
     
     [HttpPost("{id}")]

@@ -16,7 +16,7 @@ Layout = "_Layout";
 
 <div class="card">
     <div class="card-header">
-        Edit flashcard
+        Edytuj fiszkę
     </div>
     <div class="card-body">
 <form asp-action="Edit" asp-route-id="@ViewBag.FlashcardId" method="post">
@@ -28,11 +28,8 @@ Layout = "_Layout";
         <label asp-for="Back" class="form-label"></label>
         <input asp-for="Back" class="form-control"/>
     </div>
-    <div class="mb-3">
-        <label asp-for="DeckId" class="form-label"></label>
-        <select asp-for="DeckId" asp-items="Model.Decks" class="form-control"></select>
-    </div> <div class="text-end">
-    <button type="submit" class="btn btn-success">Update</button>
+    <div class="text-end">
+        <button type="submit" class="btn btn-success">Zapisz</button>
     </div>
 </form>
 
