@@ -5,14 +5,16 @@ Layout = "_Layout";
 }
 
 
-<a href="/">Back to home page</a>
-<a href="/Deck/new">Add</a>
-
 <div class="card">
     <div class="card-header">
         Lista Decków
     </div>
     <div class="card-body">
+        <div class="mb-3">
+            <a href="/Deck" class="btn btn-info">Moje decki</a>
+            <a href="/Deck/explore" class="btn btn-info">Publiczne decki</a>
+            <a href="/Deck/new" class="btn btn-success">Nowy deck</a>
+        </div>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -36,18 +38,18 @@ Layout = "_Layout";
                         {
                             <a class="btn btn-success btn-sm" href="/Deck/edit/@deck.Id">Edycja</a>
                             <form asp-action="DeleteDeck" asp-route-id="@deck.Id" method="post" style="display:inline;">
-                                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure you want to delete this deck?');">Usuń</button>
+                                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Na pewno usunąć ten deck?');">Usuń</button>
                             </form>
-                            <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Fiszki</a> 
+                            <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Fiszki</a>
                         }
                         <form action="/DeckSession/decks/@deck.Id" method="post" style="display:inline;">
-                            <button class="btn btn-success btn-sm" type="submit">Nowa Gra</button>
+                            <button class="btn btn-primary btn-sm" type="submit">Nowa Gra</button>
                         </form>
                     </td>
-                   
+
                 </tr>
             }
             </tbody>
         </table>
-        </div>
+    </div>
 </div>

@@ -13,13 +13,18 @@
         Explore Decks
     </div>
     <div class="card-body">
+        <div class="mb-3">
+            <a href="/Deck" class="btn btn-info">Moje decki</a>
+            <a href="/Deck/explore" class="btn btn-info">Publiczne decki</a>
+            <a href="/Deck/new" class="btn btn-success">Nowy deck</a>
+        </div>
         <table class="table table-bordered">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Author</th>
-                <th>Actions</th>
+                <th>Nazwa</th>
+                <th>Autor</th>
+                <th>Akcje</th>
             </tr>
             </thead>
             <tbody>
@@ -30,13 +35,13 @@
                     <td>@deck.Name</td>
                     <td>@deck.UserEmail</td>
                     <td>
-                  
-                        <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Flashcards</a>
+
+                        <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Fiszki</a>
                         <form action="/DeckSession/decks/@deck.Id" method="post" style="display:inline;">
-                            <button class="btn btn-success btn-sm" type="submit">Start Session</button>
+                            <button class="btn btn-primary btn-sm" type="submit">Nowa Gra</button>
                         </form>
                     </td>
-                   
+
                 </tr>
             }
             </tbody>

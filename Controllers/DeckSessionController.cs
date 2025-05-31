@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Flashcards.Data;
 using Flashcards.DTOs;
+using Flashcards.Models;
 using Flashcards.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
