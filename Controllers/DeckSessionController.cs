@@ -21,13 +21,6 @@ public class DeckSessionController : Controller
         _flashcardService = flashcardService;
     }
 
-    [HttpGet("decks/{deckId}")]
-    public async Task<IActionResult> New(int deckId)
-    {
-        ViewBag.DeckId = deckId;
-        return View("New");
-    }
-
     [HttpPost("decks/{deckId}")]
     public async Task<IActionResult> Create(int deckId)
     {
@@ -61,7 +54,10 @@ public class DeckSessionController : Controller
         if (currentUser == null)
             return Unauthorized();
 
-        var deckSession = currentUser.DeckSessions.FirstOrDefault(ds => ds.Id == deckSessionId);
+        var deckSession = await _context.DeckSessions
+            .Include(ds => ds.FlashcardsQueues)
+            .ThenInclude(fq => fq.Flashcard)
+            .FirstOrDefaultAsync(ds => ds.Id == deckSessionId && ds.UserId == userId);
         if (deckSession == null)
             return NotFound("Session not found");
 
