@@ -98,7 +98,7 @@ public class DeckService
             Name = inputDeckDto.Name,
             UserId = userId,
             SessionLimit = inputDeckDto.SessionLimit,
-            DeckType = inputDeckDto.DeckType,
+            DeckType = "basic",
         };
 
         _context.Decks.Add(deck);
@@ -116,7 +116,7 @@ public class DeckService
 
         deck.Name = inputDeckDto.Name;
         deck.SessionLimit = inputDeckDto.SessionLimit;
-        deck.DeckType = inputDeckDto.DeckType;
+        deck.DeckType = "basic";
 
         await _context.SaveChangesAsync();
         return true;
