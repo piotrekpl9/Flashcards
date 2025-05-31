@@ -25,4 +25,30 @@
         <input type="hidden" name="FlashcardsQueueId" value="@Model.NextFlashcardQueue.Id" />
         <button type="submit">Answer Quality 1</button>
     </form>
+    <form asp-action="Update" asp-controller="DeckSession" asp-route-deckSessionId="@Model.Id" method="post">
+        <input type="hidden" name="Quality" value="2" />
+        <input type="hidden" name="FlashcardsQueueId" value="@Model.NextFlashcardQueue.Id" />
+        <button type="submit">Answer Quality 2</button>
+    </form>
+    <form asp-action="Update" asp-controller="DeckSession" asp-route-deckSessionId="@Model.Id" method="post">
+        <input type="hidden" name="Quality" value="3" />
+        <input type="hidden" name="FlashcardsQueueId" value="@Model.NextFlashcardQueue.Id" />
+        <button type="submit">Answer Quality 3</button>
+    </form>
+    <form asp-action="Update" asp-controller="DeckSession" asp-route-deckSessionId="@Model.Id" method="post">
+        <input type="hidden" name="Quality" value="4" />
+        <input type="hidden" name="FlashcardsQueueId" value="@Model.NextFlashcardQueue.Id" />
+        <button type="submit">Answer Quality 4</button>
+    </form>
+    <form asp-action="Update" asp-controller="DeckSession" asp-route-deckSessionId="@Model.Id" method="post">
+        <input type="hidden" name="Quality" value="5" />
+        <input type="hidden" name="FlashcardsQueueId" value="@Model.NextFlashcardQueue.Id" />
+        <button type="submit">Answer Quality 5</button>
+    </form>
 }
+
+<ul>
+    <li>Remaining: @(Model.SessionLimit - Model.SessionLength)</li>
+    <li>Repetitions: @Model.NextFlashcardQueue?.Repetitions</li>
+    <li>Ease Factor: @Model.NextFlashcardQueue?.EaseFactor</li>
+</ul>
