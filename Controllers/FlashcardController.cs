@@ -67,7 +67,7 @@ public class FlashcardController : Controller
         if (flashcard == null)
             return BadRequest();
 
-        return RedirectToAction("GetFlashcard");    
+        return RedirectToAction("GetFlashcard", new { flashcard.DeckId });    
     }
 
     [HttpGet("edit/{id}")]
@@ -98,9 +98,26 @@ public class FlashcardController : Controller
 
         var result = await _flashcardService.Update(id, inputFlashcardDto, GetUserId());
         if (!result)
-            return NotFound(); // or return a specific error view/message
+            return NotFound();
 
         return RedirectToAction("GetFlashcard");
+    }
+    
+    [HttpPost("{id}")]
+    public async Task<IActionResult> DeleteFlashcard(int id)
+    {
+        var flashcard = await _flashcardService.GetById(id);
+        var deckId = flashcard?.DeckId;
+        if (flashcard == null || flashcard.UserId != GetUserId())
+        {
+            return NotFound();
+        }
+        var result = await _flashcardService.Delete(id);
+        if (!result)
+        {
+            return BadRequest();
+        }
+        return RedirectToAction("GetFlashcard", new { deckId });
     }
 
 
