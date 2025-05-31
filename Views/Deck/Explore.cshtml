@@ -6,9 +6,11 @@
     {
         <li>
             @deck.Name - 
-            <a href="user/@deck.UserId/deck">Decki gracza</a>
+            <a href="user/@deck.UserId/deck">Users decks</a>
             <a href="/Flashcard?deckId=@deck.Id">Flashcards</a>
-            <a href="/DeckSession/decks/@deck.Id">Start Session</a>
+            <form action="/DeckSession/decks/@deck.Id" method="post" style="display:inline;">
+                <button type="submit">Start Session</button>
+            </form>
         </li>
     }
 </ul>
