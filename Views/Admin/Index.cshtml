@@ -1,20 +1,48 @@
-<ul>
-    <form asp-action="GetPendingDecks" method="get" >
-        <input name="name" />
-        <button type="submit">Search</button>
-    </form>
+@model IEnumerable<Flashcards.DTOs.DeckDto>
 
-    @foreach (var deck in Model)
-    {
-        <li>
-            @deck.Name -
-            <form asp-action="ApproveDeck" asp-route-id="@deck.Id" method="post" style="display:inline;">
-                <button type="submit" onclick="return confirm('Are you sure you want to confirm this deck?');">zatwierdz</button>
-            </form>
-            <form asp-action="RejectDeck" asp-route-id="@deck.Id" method="post" style="display:inline;">
-                <button type="submit" onclick="return confirm('Are you sure you want to delete this deck?');">odrzuć</button>
-            </form>
-            <a href="/Flashcard?deckId=@deck.Id">Flashcards</a>
-        </li>
-    }
-</ul>
+@{
+Layout = "_Layout";
+}
+<form asp-action="GetPendingDecks" method="get" >
+    <input name="name" />
+    <button type="submit">Search</button>
+</form>
+
+<div class="card">
+    <div class="card-header">
+Pending decks
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var deck in Model)
+            {
+                <tr>
+                    <td> @deck.Id</td>
+                    <td> @deck.Name</td>
+                    <td> @deck.UserEmail</td>
+                    <td>
+                        <form asp-action="ApproveDeck" asp-route-id="@deck.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure you want to confirm this deck?');">Accept</button>
+                        </form>
+                        <form asp-action="RejectDeck" asp-route-id="@deck.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure you want to delete this deck?');">Reject</button>
+                        </form>
+                        <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Flashcards</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+  
+   

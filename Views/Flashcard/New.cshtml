@@ -1,18 +1,36 @@
 @model Flashcards.DTOs.CreateFlashcardDto
+@section Styles {
+<style>
+    .card {
+        max-width: 500px !important;
+        margin: 50px auto;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+    }
 
-<h2>New Flashcard</h2>
+</style>
+}
+@{
+Layout = "_Layout";
+}
+<div class="card">
+    <div class="card-header">
+        Add flashcard
+    </div>
+    <div class="card-body">
 <form asp-action="New" method="post">
-    <div>
-        <label asp-for="Front"></label>
-        <input asp-for="Front" />
+    <div class="mb-3">
+        <label asp-for="Front" class="form-label"></label>
+        <input asp-for="Front" class="form-control"/>
     </div>
-    <div>
-        <label asp-for="Back"></label>
-        <input asp-for="Back" />
+    <div class="mb-3">
+        <label asp-for="Back" class="form-label"></label>
+        <input asp-for="Back" class="form-control" />
     </div>
-    <div>
-        <label asp-for="DeckId"></label>
-        <select asp-for="DeckId" asp-items="Model.Decks"></select>
+    <div class="mb-3">
+        <label asp-for="DeckId" class="form-label"></label>
+        <select asp-for="DeckId" asp-items="Model.Decks" class="form-control"></select>
     </div>
-    <button type="submit">Create</button>
-</form>
+    <button type="submit" class="btn btn-success">Create</button>
+</form>   </div>
+</div>

@@ -1,3 +1,5 @@
+using Flashcards.Models;
+
 namespace Flashcards.DTOs;
 
 public class DeckDto
@@ -8,6 +10,7 @@ public class DeckDto
     public int? SessionLimit { get; set; }
 
     public string UserId { get; set; }
+    public string UserEmail { get; set; }
     
     public string? DeckType { get; set; }
 

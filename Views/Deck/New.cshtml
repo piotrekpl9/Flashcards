@@ -1,14 +1,36 @@
 @model Flashcards.DTOs.CreateDeckDto
+@section Styles {
+<style>
+    .card {
+        max-width: 500px !important;
+        margin: 50px auto;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+    }
+    
+</style>
+}
+@{
+Layout = "_Layout";
+}
 
-<h2>New Deck</h2>
-<form asp-action="New" method="post">
-    <div>
-        <label asp-for="Name"></label>
-        <input asp-for="Name" />
+<div class="card">
+    <div class="card-header">
+        Add new deck
     </div>
-    <div>
-        <label asp-for="SessionLimit"></label>
-        <input asp-for="SessionLimit" type="number" />
-    </div>
-    <button type="submit">Create</button>
-</form>
+    <div class="card-body">
+        <form asp-action="New" method="post">
+            
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="SessionLimit" class="form-label"></label>
+                <input asp-for="SessionLimit" class="form-control" type="number"/>
+            </div>
+            <div class="text-end">
+            <button type="submit" class="btn btn-success">Create</button></div>
+        </form>    
+        </div>
+</div>

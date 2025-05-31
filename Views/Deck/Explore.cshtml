@@ -1,16 +1,45 @@
 @model IEnumerable<Flashcards.DTOs.DeckDto>
 
-<p>Explore Decks</p>
-<ul>
-    @foreach (var deck in Model)
-    {
-        <li>
-            @deck.Name - 
-            <a href="user/@deck.UserId/deck">Users decks</a>
-            <a href="/Flashcard?deckId=@deck.Id">Flashcards</a>
-            <form action="/DeckSession/decks/@deck.Id" method="post" style="display:inline;">
-                <button type="submit">Start Session</button>
-            </form>
-        </li>
-    }
-</ul>
+@{
+    Layout = "_Layout";
+}
+
+
+<a href="/">Back to home page</a>
+<a href="/Deck/new">Add</a>
+
+<div class="card">
+    <div class="card-header">
+        Explore Decks
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var deck in Model)
+            {
+                <tr>
+                    <td>@deck.Id</td>
+                    <td>@deck.Name</td>
+                    <td>@deck.UserEmail</td>
+                    <td>
+                  
+                        <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Flashcards</a>
+                        <form action="/DeckSession/decks/@deck.Id" method="post" style="display:inline;">
+                            <button class="btn btn-success btn-sm" type="submit">Start Session</button>
+                        </form>
+                    </td>
+                   
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -11,7 +11,7 @@ public class MappingProfile : Profile
         CreateMap<Flashcard, FlashcardDto>();
         CreateMap<Flashcard, CreateFlashcardDto>();
 
-        CreateMap<Deck, DeckDto>();
+        CreateMap<Deck, DeckDto>().ForMember(dto => dto.UserEmail, opt => opt.MapFrom(src => src.User.Email));
         CreateMap<Deck, CreateDeckDto>();
 
     }

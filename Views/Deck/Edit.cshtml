@@ -1,17 +1,38 @@
 @model Flashcards.DTOs.CreateDeckDto
+@section Styles {
+<style>
+    .card {
+        max-width: 500px !important;
+        margin: 50px auto;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+    }
 
-<h2>Edit Deck</h2>
-<form asp-action="Edit" asp-route-id="@ViewBag.DeckId" method="post">
-    <div>
-        <label asp-for="Name">Name</label>
-        <input asp-for="Name" id="Name" required />
-        <span asp-validation-for="Name" class="text-danger"></span>
+</style>
+}
+@{
+Layout = "_Layout";
+}
+
+<div class="card">
+    <div class="card-header">
+        Edit deck
     </div>
-    <div>
-        <label asp-for="SessionLimit">SessionLimit</label>
-        <input asp-for="SessionLimit" id="SessionLimit" type="number" />
-        <span asp-validation-for="SessionLimit" class="text-danger"></span>
+    <div class="card-body">
+        <form asp-action="Edit" asp-route-id="@ViewBag.DeckId" method="post">
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Name</label>
+                <input asp-for="Name" id="Name" required class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SessionLimit" class="form-label">SessionLimit</label>
+                <input asp-for="SessionLimit" id="SessionLimit" type="number" class="form-control"/>
+                <span asp-validation-for="SessionLimit" class="text-danger"></span>
+            </div> 
+            <div class="text-end">
+                <button type="submit" class="btn btn-success">Save</button>
+            </div>
+        </form>
     </div>
-    <button type="submit">Save</button>
-</form>
-<a href="/Deck">Back to list</a>
+</div>
