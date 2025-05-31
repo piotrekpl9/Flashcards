@@ -42,9 +42,12 @@ Layout = "_Layout";
                             </form>
                             <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Fiszki</a>
                         }
-                        <form action="/DeckSession/decks/@deck.Id" method="post" style="display:inline;">
-                            <button class="btn btn-primary btn-sm" type="submit">Nowa Gra</button>
-                        </form>
+                        @if (deck.Flashcards.Any())
+                        {
+                            <form action="/DeckSession/decks/@deck.Id" method="post" style="display:inline;">
+                                <button class="btn btn-primary btn-sm" type="submit">Nowa Gra</button>
+                            </form>
+                        }
                     </td>
 
                 </tr>
