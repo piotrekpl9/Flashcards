@@ -46,6 +46,8 @@ public class DeckController : Controller
         {
             var decks = await _deckService.GetAll(GetUserId());
             var deckDtos = _mapper.Map<List<DeckDto>>(decks);
+            
+            @ViewBag.UserId = GetUserId();
             return View("Index", deckDtos);
         }
         

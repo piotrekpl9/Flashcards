@@ -13,6 +13,8 @@ public class DeckDto
     public string UserEmail { get; set; }
     
     public string? DeckType { get; set; }
+    
+    public DeckStatus Status { get; set; }
 
     public virtual IEnumerable<FlashcardDto> Flashcards { get; set; } = new List<FlashcardDto>();
 }
