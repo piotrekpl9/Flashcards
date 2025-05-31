@@ -6,9 +6,12 @@
 
 <h2>Sesja</h2>
 
+<div class="text-center">
+    <p>Kliknij w fiszkę by poznać odpowiedź</p>
+</div>
 <div class="cardbox">
     <span class="question">@Model.NextFlashcardQueue?.Flashcard?.Front</span>
-    <span class="answer">@Model.NextFlashcardQueue?.Flashcard?.Back</span>
+    <span class="answer" style="display:none;">@Model.NextFlashcardQueue?.Flashcard?.Back</span>
 </div>
 
 @if (Model.NextFlashcardQueue != null)
@@ -49,3 +52,24 @@
 </ul>
 
 <a href="/Deck" class="btn btn-danger">Przerwij grę</a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cardbox = document.querySelector('.cardbox');
+        const question = document.querySelector('.cardbox .question');
+        const answer = document.querySelector('.cardbox .answer');
+        if (cardbox && question && answer) {
+            cardbox.addEventListener('click', function() {
+                if (question.style.display === 'none') {
+                    question.style.display = '';
+                    answer.style.display = 'none';
+                    cardbox.classList.remove('cardbox-answer');
+                } else {
+                    question.style.display = 'none';
+                    answer.style.display = '';
+                    cardbox.classList.add('cardbox-answer');
+                }
+            });
+        }
+    });
+</script>
