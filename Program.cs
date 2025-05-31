@@ -31,6 +31,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<DeckService>();
 builder.Services.AddScoped<FlashcardService>();
+builder.Services.AddScoped<DeckSessionService>();
+builder.Services.AddScoped<FlashcardsQueueService>();
 
 var app = builder.Build();
 
