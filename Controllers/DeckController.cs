@@ -49,19 +49,6 @@ public class DeckController : Controller
             return View("Index", deckDtos);
         }
         
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Deck>> GetDeck(int id)
-        {
-            var deck = await _deckService.GetById(id);
-
-            if (deck == null || deck.UserId != GetUserId())
-            {
-                return NotFound();
-            }
-
-            return View("Show", _mapper.Map<DeckDto>(deck));
-        }
-        
         [HttpGet("new")]
         public IActionResult New()
         {
@@ -82,7 +69,7 @@ public class DeckController : Controller
                 return BadRequest();
             }
 
-            return RedirectToAction("GetDeck", new { id = deck.Id });
+            return RedirectToAction("GetDeck");
         }
         
         [HttpGet("edit/{id}")]
@@ -104,7 +91,7 @@ public class DeckController : Controller
             if (!result)
                 return BadRequest();
 
-            return RedirectToAction("GetDeck", new { id });
+            return RedirectToAction("GetDeck");
         }
 
         [HttpPost]

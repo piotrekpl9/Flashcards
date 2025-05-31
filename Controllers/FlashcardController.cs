@@ -38,19 +38,6 @@ public class FlashcardController : Controller
         return View("Index", dtos);
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetFlashcard(int id)
-    {
-        var flashcard = await _context.Flashcards
-            .Include(f => f.Deck)
-            .FirstOrDefaultAsync(f => f.Id == id);
-        if (flashcard == null || flashcard.Deck == null || flashcard.Deck.UserId != GetUserId())
-            return NotFound();
-
-        var dto = _mapper.Map<FlashcardDto>(flashcard);
-        return View("Show", dto);
-    }
-
     [HttpGet("new")]
     public IActionResult New()
     {
@@ -80,7 +67,8 @@ public class FlashcardController : Controller
         if (flashcard == null)
             return BadRequest();
 
-        return RedirectToAction("GetFlashcard", new { deckId = flashcard.DeckId });    }
+        return RedirectToAction("GetFlashcard");    
+    }
 
     [HttpGet("edit/{id}")]
     public async Task<IActionResult> Edit(int id)
@@ -112,23 +100,9 @@ public class FlashcardController : Controller
         if (!result)
             return NotFound(); // or return a specific error view/message
 
-        return RedirectToAction("GetFlashcard", new { id });
+        return RedirectToAction("GetFlashcard");
     }
 
-    [HttpPost("{id}")]
-    public async Task<IActionResult> DeleteFlashcard(int id)
-    {
-        var flashcard = await _flashcardService.GetById(id);
-        if (flashcard == null)
-            return NotFound();
-
-        var deckId = flashcard.DeckId;
-        var result = await _flashcardService.Delete(id);
-        if (!result)
-            return BadRequest();
-
-        return RedirectToAction("GetFlashcard", new { deckId });
-    }
 
     private string GetUserId()
     {
