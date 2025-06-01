@@ -38,7 +38,7 @@ Layout = "_Layout";
                     <td>@deck.Id</td>
                     <td>@deck.Name</td>
                     <td>@deck.UserEmail</td>
-                    <td>@deck.Status</td>
+                    <td>@deck.Status.ToPolish()</td>
                     <td>
                         @if (deck.UserId == (string)ViewBag.UserId)
                         {
