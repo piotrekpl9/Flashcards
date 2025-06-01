@@ -19,7 +19,7 @@ Layout = "_Layout";
     </div>
     <div class="card-body">
         <form asp-action="New" asp-controller="Flashcard" method="post">
-            <input type="hidden" asp-for="DeckId" value="@ViewBag.deckId" />
+            <input type="hidden" asp-for="DeckId" />
             <div class="mb-3">
                 <label asp-for="Front" class="form-label"></label>
                 <input asp-for="Front" class="form-control"/>
