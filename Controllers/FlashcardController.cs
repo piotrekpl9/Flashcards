@@ -33,8 +33,8 @@ public class FlashcardController : Controller
         var dtos = filtered.Select(f => _mapper.Map<FlashcardDto>(f)).ToList();
         return View("Explore", dtos);
     }
-    [HttpGet]
-    public async Task<IActionResult> GetFlashcard([FromQuery] int? deckId)
+    [HttpGet("decks/{deckId}/index")]
+    public async Task<IActionResult> GetFlashcard(int? deckId)
     {
         if (deckId == null)
             return NotFound();
@@ -42,6 +42,18 @@ public class FlashcardController : Controller
         var flashcards = await _flashcardService.GetAllByUserId(GetUserId());
         var filtered = flashcards.Where(f => f.DeckId == deckId.Value).ToList();
         var dtos = filtered.Select(f => _mapper.Map<FlashcardDto>(f)).ToList();
+        return View("Index", dtos);
+    }
+
+    [HttpGet("public_decks/{deckId}/index")]
+    public async Task<IActionResult> GetPublicDeck(int? deckId)
+    {
+        if (deckId == null)
+            return NotFound();
+
+        var flashcards = await _flashcardService.GetPublicFlashcards(deckId);
+        
+        var dtos = flashcards.Select(f => _mapper.Map<FlashcardDto>(f)).ToList();
         return View("Index", dtos);
     }
 

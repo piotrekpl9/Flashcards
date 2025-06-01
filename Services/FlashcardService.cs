@@ -16,6 +16,15 @@ public class FlashcardService
         _context = context;
     }
     
+        public async Task<IEnumerable<Flashcard>> GetPublicFlashcards(int? deckId)
+        {
+            return await _context.Flashcards
+                .Include(flashcard => flashcard.Deck)
+                .Where(flashcard => flashcard.DeckId == deckId
+                                    && flashcard.Deck.Status == DeckStatus.Accepted)
+                .ToListAsync();
+        }
+        
         public async Task<IEnumerable<Flashcard>> GetAllByUserId(string? userId)
         {
             return await _context.Flashcards

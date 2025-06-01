@@ -31,7 +31,7 @@
                     <td>@deck.Name</td>
                     <td>@deck.UserEmail</td>
                     <td>
-                        <a class="btn btn-success btn-sm" href="/Flashcard/explore?deckId=@deck.Id">Fiszki (@deck.Flashcards.Count())</a>
+                        <a class="btn btn-success btn-sm" href="/Flashcard/public_decks/@deck.Id/index">Fiszki (@deck.Flashcards.Count())</a>
                         <form action="/DeckSession/decks/@deck.Id" method="post" style="display:inline;">
                             <button class="btn btn-primary btn-sm" type="submit">Nowa Gra</button>
                         </form>
