@@ -46,7 +46,7 @@ Layout = "_Layout";
                             <form asp-action="DeleteDeck" asp-route-id="@deck.Id" method="post" style="display:inline;">
                                 <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Na pewno usunąć ten deck?');">Usuń</button>
                             </form>
-                            <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Fiszki</a>
+                            <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Fiszki (@deck.Flashcards.Count())</a>
                         }
                         @if (deck.Flashcards.Any())
                         {

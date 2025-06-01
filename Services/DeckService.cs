@@ -51,7 +51,7 @@ public class DeckService
             return await _context.Decks
                 .Include(e => e.User)
                 .Include(deck => deck.Flashcards)
-                .Where(deck => deck.Status == DeckStatus.Pending)
+                .Where(deck => deck.Status == DeckStatus.Pending && deck.Flashcards.Count > 0)
                 .ToListAsync();
         }
         else

@@ -42,7 +42,7 @@ Oczekujące decki
                         <form asp-action="RejectDeck" asp-route-id="@deck.Id" method="post" style="display:inline;">
                             <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Potwierdz odrzucenie');">Odrzuć</button>
                         </form>
-                        <a class="btn btn-success btn-sm" href="pending-decks/@deck.Id/flashcards">Fiszki</a>
+                        <a class="btn btn-success btn-sm" href="pending-decks/@deck.Id/flashcards">Fiszki (@deck.Flashcards.Count())</a>
                     </td>
                 </tr>
             }
