@@ -11,11 +11,13 @@ namespace Flashcards.Controllers;
 public class AdminController : Controller
 {
     private readonly DeckService _deckService;
+    private readonly FlashcardService _flashcardService;
     private readonly IMapper _mapper;
-    public AdminController(DeckService deckService, IMapper mapper)
+    public AdminController(DeckService deckService, IMapper mapper, FlashcardService flashcardService)
     {
         _deckService = deckService;
         _mapper = mapper;
+        _flashcardService = flashcardService;
     }
 
     [HttpGet("pending-decks")]
@@ -25,7 +27,13 @@ public class AdminController : Controller
         var deckDtos = _mapper.Map<List<DeckDto>>(pendingDecks);
         return View("Index", deckDtos);
     }
-
+    [HttpGet("pending-decks/{id:int}/flashcards")]
+    public async Task<ActionResult<IEnumerable<FlashcardDto>>> GetPendingDecks(int id)
+    {
+        var pendingDecks = await _flashcardService.GetAllByDeckId(id);
+        var deckDtos = _mapper.Map<List<FlashcardDto>>(pendingDecks);
+        return View("Flashcards", deckDtos);
+    }
     [HttpPost("decks/{id}/approve")]
     public async Task<IActionResult> ApproveDeck(int id)
     {

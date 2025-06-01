@@ -28,7 +28,7 @@ public class FlashcardController : Controller
     [Route("explore")]
     public async Task<ActionResult<IEnumerable<DeckDto>>> Explore([FromQuery] int? deckId)
     {
-        var flashcards = await _flashcardService.GetAll(GetUserId());
+        var flashcards = await _flashcardService.GetAllByUserId(GetUserId());
         var filtered = flashcards.Where(f => f.DeckId == deckId.Value).ToList();
         var dtos = filtered.Select(f => _mapper.Map<FlashcardDto>(f)).ToList();
         return View("Explore", dtos);
@@ -39,7 +39,7 @@ public class FlashcardController : Controller
         if (deckId == null)
             return NotFound();
 
-        var flashcards = await _flashcardService.GetAll(GetUserId());
+        var flashcards = await _flashcardService.GetAllByUserId(GetUserId());
         var filtered = flashcards.Where(f => f.DeckId == deckId.Value).ToList();
         var dtos = filtered.Select(f => _mapper.Map<FlashcardDto>(f)).ToList();
         return View("Index", dtos);

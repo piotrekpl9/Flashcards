@@ -21,7 +21,7 @@ public class DeckService
             .Where(deck => deck.UserId == userId);
         if (!string.IsNullOrEmpty(name))
         {
-            query = query.Where(deck => deck.Name != null && deck.Name.Contains(name));
+            query = query.Where(deck => deck.Name != null && deck.Name.ToLower().Contains(name.ToLower()));
         }
         return await query
             .Include(e => e.User)
@@ -59,7 +59,7 @@ public class DeckService
             return await _context.Decks
                 .Include(e => e.User)
                 .Include(deck => deck.Flashcards)
-                .Where(deck => deck.Status == DeckStatus.Pending && deck.Name.Contains(name))
+                .Where(deck => deck.Status == DeckStatus.Pending && deck.Name.ToLower().Contains(name.ToLower()))
                 .ToListAsync();
         }
     }

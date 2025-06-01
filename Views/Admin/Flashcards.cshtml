@@ -1,0 +1,36 @@
+
+@model IEnumerable<Flashcards.DTOs.FlashcardDto>
+
+
+@{
+Layout = "_Layout";
+}
+
+
+
+<div class="card">
+    <div class="card-header">
+        Fiszki
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Pytanie</th>
+                <th>Odpowiedź</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var flashcard in Model)
+            {
+                <tr>
+                    <td>@flashcard.Id</td>
+                    <td>@flashcard.Front</td>
+                    <td>@flashcard.Back</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
