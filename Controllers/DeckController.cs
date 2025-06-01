@@ -60,9 +60,7 @@ public class DeckController : Controller
     public async Task<IActionResult> New(CreateDeckDto inputDeckDto)
     {
         if (!ModelState.IsValid)
-        {
             return View(inputDeckDto);
-        }
 
         var deck = await _deckService.Create(inputDeckDto, GetUserId());
         if (deck == null)
@@ -88,6 +86,9 @@ public class DeckController : Controller
     [HttpPost("edit/{id}")]
     public async Task<IActionResult> Edit(int id, CreateDeckDto inputDeckDto)
     {
+        if (!ModelState.IsValid)
+            return View(inputDeckDto);
+        
         var result = await _deckService.Update(id, inputDeckDto);
         if (!result)
             return BadRequest();
