@@ -23,12 +23,12 @@ Layout = "_Layout";
             <div class="mb-3">
                 <label asp-for="Name" class="form-label">Nazwa</label>
                 <input asp-for="Name" id="Name" required class="form-control"/>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
                 <label asp-for="SessionLimit" class="form-label">Limit sesji</label>
                 <input asp-for="SessionLimit" id="SessionLimit" type="number" class="form-control"/>
-                <span asp-validation-for="SessionLimit" class="text-danger"></span>
+                @Html.ValidationMessageFor(m => m.SessionLimit, "", new { @class = "text-danger" })
             </div> 
             <div class="text-end">
                 <button type="submit" class="btn btn-success">Zapisz</button>

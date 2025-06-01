@@ -6,13 +6,10 @@ namespace Flashcards.Models;
 public class Deck
 {
     public int Id { get; set; }
-
-    [Required(ErrorMessage = "Nazwa wymagana")]
-    public string Name { get; set; } = "";
-
-    [Required(ErrorMessage = "Limit pytań wymagany")]
-    [Range(1, int.MaxValue, ErrorMessage = "Musi być większe niż 0.")]
-    public int? SessionLimit { get; set; }
+    
+    public string Name { get; set; }
+    
+    public int? SessionLimit { get; set; } = 1;
 
     public string UserId { get; set; }
     public virtual User? User { get; set; }
