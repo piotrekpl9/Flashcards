@@ -42,6 +42,8 @@ public class FlashcardController : Controller
         var flashcards = await _flashcardService.GetAllByUserId(GetUserId());
         var filtered = flashcards.Where(f => f.DeckId == deckId.Value).ToList();
         var dtos = filtered.Select(f => _mapper.Map<FlashcardDto>(f)).ToList();
+        
+        @ViewBag.deckId = deckId;
         return View("Index", dtos);
     }
 
@@ -57,21 +59,23 @@ public class FlashcardController : Controller
         return View("Index", dtos);
     }
 
-    [HttpGet("new")]
-    public IActionResult New()
+    [HttpGet("decks/{deckId}/new")]
+    public IActionResult New(int deckId)
     {
         var decks = GetUserDecks();
 
         var model = new CreateFlashcardDto
         {
-            Decks = decks
+            DeckId = deckId,
         };
+        
+        @ViewBag.deckId = deckId;
 
         return View(model);
     }
 
-    [HttpPost("new")]
-    public async Task<IActionResult> New(CreateFlashcardDto inputFlashcardDto)
+    [HttpPost("decks/{deckId}/new")]
+    public async Task<IActionResult> New(int deckId, CreateFlashcardDto inputFlashcardDto)
     {
         if (!ModelState.IsValid)
             return View(inputFlashcardDto);

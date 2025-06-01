@@ -18,22 +18,19 @@ Layout = "_Layout";
         Dodaj fiszkę
     </div>
     <div class="card-body">
-<form asp-action="New" method="post">
-    <div class="mb-3">
-        <label asp-for="Front" class="form-label"></label>
-        <input asp-for="Front" class="form-control"/>
-        @Html.ValidationMessageFor(m => m.Front, "", new { @class = "text-danger" })
+        <form asp-action="New" asp-controller="Flashcard" method="post">
+            <input type="hidden" asp-for="DeckId" value="@ViewBag.deckId" />
+            <div class="mb-3">
+                <label asp-for="Front" class="form-label"></label>
+                <input asp-for="Front" class="form-control"/>
+                @Html.ValidationMessageFor(m => m.Front, "", new { @class = "text-danger" })
 
-    </div>
-    <div class="mb-3">
-        <label asp-for="Back" class="form-label"></label>
-        <input asp-for="Back" class="form-control" />
-        @Html.ValidationMessageFor(m => m.Back, "", new { @class = "text-danger" })
-    </div>
-    <div class="mb-3">
-        <label asp-for="DeckId" class="form-label"></label>
-        <select asp-for="DeckId" asp-items="Model.Decks" class="form-control"></select>
-    </div>
-    <button type="submit" class="btn btn-success">Zapisz</button>
-</form>   </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Back" class="form-label"></label>
+                <input asp-for="Back" class="form-control"/>
+                @Html.ValidationMessageFor(m => m.Back, "", new { @class = "text-danger" })
+            </div>
+            <button type="submit" class="btn btn-success">Zapisz</button>
+        </form>   </div>
 </div>
