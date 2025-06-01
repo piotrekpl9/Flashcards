@@ -42,6 +42,7 @@ public class AdminController : Controller
         {
             return BadRequest();
         }
+        TempData["FlashMessage"] = "Zaakceptowano Deck!";
         return RedirectToAction("GetPendingDecks");
 
     }
@@ -54,6 +55,7 @@ public class AdminController : Controller
         {
             return BadRequest();
         }
+        TempData["FlashMessage"] = "Odrzucono Deck!";
         return RedirectToAction("GetPendingDecks");
 
     }

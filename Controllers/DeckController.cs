@@ -68,6 +68,7 @@ public class DeckController : Controller
             return BadRequest();
         }
 
+        TempData["FlashMessage"] = "Dodano Deck!";
         return RedirectToAction("GetDeck");
     }
     
@@ -93,6 +94,7 @@ public class DeckController : Controller
         if (!result)
             return BadRequest();
 
+        TempData["FlashMessage"] = "Zaktualizowano deck!";
         return RedirectToAction("GetDeck");
     }
 
@@ -117,6 +119,7 @@ public class DeckController : Controller
         {
             return BadRequest();
         }
+        TempData["FlashMessage"] = "Usunięto Deck!";
         return RedirectToAction("GetDeck");
     }
 

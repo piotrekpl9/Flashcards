@@ -74,6 +74,7 @@ public class FlashcardController : Controller
         if (flashcard == null)
             return BadRequest();
 
+        TempData["FlashMessage"] = "Dodano Fiszkę!";
         return RedirectToAction("GetFlashcard", new { flashcard.DeckId });    
     }
 
@@ -107,6 +108,7 @@ public class FlashcardController : Controller
         if (updatedFlashcard == null)
             return NotFound();
 
+        TempData["FlashMessage"] = "Zaktualizowano Fiszkę!";
         return RedirectToAction("GetFlashcard", new { deckId = updatedFlashcard.Deck.Id });
     }
     
@@ -124,6 +126,7 @@ public class FlashcardController : Controller
         {
             return BadRequest();
         }
+        TempData["FlashMessage"] = "Usunięto Fiszkę!";
         return RedirectToAction("GetFlashcard", new { deckId });
     }
 

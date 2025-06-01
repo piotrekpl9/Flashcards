@@ -72,7 +72,10 @@ public class DeckSessionController : Controller
             return NotFound("Session not found");
 
         if (deckSession.SessionLimit != null && deckSession.SessionLength >= deckSession.SessionLimit)
+        {
+            TempData["FlashMessage"] = "Gra zakończona!";
             return RedirectToAction("GetDeck", "Deck");
+        }
 
         var deckSessionService = new DeckSessionService(_context, _flashcardService);
         var dto = deckSessionService.MapToDeckSessionDTO(deckSession);
