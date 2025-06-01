@@ -2,7 +2,7 @@
 
 
 @{
-    Layout = "_Layout";
+Layout = "_Layout";
 }
 
 
@@ -12,16 +12,12 @@
         Fiszki
     </div>
     <div class="card-body">
-        <div class="mb-3">
-            <a class="btn btn-sm btn-success" href="/Flashcard/new">Dodaj</a>
-        </div>
         <table class="table table-bordered table-hover">
             <thead class="table-light">
             <tr>
                 <th>ID</th>
                 <th>Pytanie</th>
                 <th>Odpowiedź</th>
-                <th>Akcje</th>
             </tr>
             </thead>
             <tbody>
@@ -31,15 +27,9 @@
                     <td>@flashcard.Id</td>
                     <td>@flashcard.Front</td>
                     <td>@flashcard.Back</td>
-                    <td>
-                        <a class="btn btn-success btn-sm" href="/Flashcard/edit/@flashcard.Id">Edycja</a>
-                        <form asp-action="DeleteFlashcard" asp-route-id="@flashcard.Id" method="post" style="display:inline;">
-                            <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Potwierdz usuniecie');">Usuń</button>
-                        </form>
-                    </td>
                 </tr>
             }
             </tbody>
         </table>
     </div>
-    </div>
+</div>

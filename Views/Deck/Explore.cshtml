@@ -6,7 +6,7 @@
 
 <div class="card">
     <div class="card-header">
-        Explore Decks
+        Odkrywaj decki
     </div>
     <div class="card-body">
         <div class="mb-3">
@@ -31,8 +31,7 @@
                     <td>@deck.Name</td>
                     <td>@deck.UserEmail</td>
                     <td>
-
-                        <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Fiszki</a>
+                        <a class="btn btn-success btn-sm" href="/Flashcard/explore?deckId=@deck.Id">Fiszki</a>
                         <form action="/DeckSession/decks/@deck.Id" method="post" style="display:inline;">
                             <button class="btn btn-primary btn-sm" type="submit">Nowa Gra</button>
                         </form>

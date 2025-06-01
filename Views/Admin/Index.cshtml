@@ -3,23 +3,29 @@
 @{
 Layout = "_Layout";
 }
-<form asp-action="GetPendingDecks" method="get" >
-    <input name="name" />
-    <button type="submit">Search</button>
-</form>
+
+
+
 
 <div class="card">
     <div class="card-header">
-Pending decks
-    </div>
+Oczekujące decki
+    </div>   
+    
     <div class="card-body">
+        <div class="mb-1">
+            <form asp-action="GetPendingDecks" method="get" >
+                <input name="name"/>
+                <button type="submit" class="btn btn-sm btn-primary">Szukaj</button>
+            </form>
+        </div>
         <table class="table table-bordered table-hover">
             <thead class="table-light">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Author</th>
-                <th>Action</th>
+                <th>Nazwa</th>
+                <th>Autor</th>
+                <th>Akcje</th>
             </tr>
             </thead>
             <tbody>
@@ -31,12 +37,12 @@ Pending decks
                     <td> @deck.UserEmail</td>
                     <td>
                         <form asp-action="ApproveDeck" asp-route-id="@deck.Id" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure you want to confirm this deck?');">Accept</button>
+                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Potwierdz zaakceptowanie');">Akceptuj</button>
                         </form>
                         <form asp-action="RejectDeck" asp-route-id="@deck.Id" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure you want to delete this deck?');">Reject</button>
+                            <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Potwierdz odrzucenie');">Odrzuć</button>
                         </form>
-                        <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Flashcards</a>
+                        <a class="btn btn-success btn-sm" href="/Flashcard?deckId=@deck.Id">Fiszki</a>
                     </td>
                 </tr>
             }

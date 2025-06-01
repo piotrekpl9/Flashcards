@@ -16,22 +16,22 @@ Layout = "_Layout";
 
 <div class="card">
     <div class="card-header">
-        Edit deck
+       Edytuj deck
     </div>
     <div class="card-body">
         <form asp-action="Edit" asp-route-id="@ViewBag.DeckId" method="post">
             <div class="mb-3">
-                <label asp-for="Name" class="form-label">Name</label>
+                <label asp-for="Name" class="form-label">Nazwa</label>
                 <input asp-for="Name" id="Name" required class="form-control"/>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="SessionLimit" class="form-label">SessionLimit</label>
+                <label asp-for="SessionLimit" class="form-label">Limit sesji</label>
                 <input asp-for="SessionLimit" id="SessionLimit" type="number" class="form-control"/>
                 <span asp-validation-for="SessionLimit" class="text-danger"></span>
             </div> 
             <div class="text-end">
-                <button type="submit" class="btn btn-success">Save</button>
+                <button type="submit" class="btn btn-success">Zapisz</button>
             </div>
         </form>
     </div>

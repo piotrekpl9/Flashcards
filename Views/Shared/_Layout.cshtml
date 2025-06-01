@@ -67,7 +67,7 @@
                         </li>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <a href="/Admin/pending-decks">Oczekujące Decki</a>
+                            <a href="/Admin/pending-decks" class="nav-link">Oczekujące decki</a>
                         }
                         @if (User.Identity.IsAuthenticated)
                         {

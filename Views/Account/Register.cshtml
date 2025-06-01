@@ -5,15 +5,15 @@
     Layout = "_Layout";
 }
 
-<h2>Register</h2>
+<h2>Zarejestruj</h2>
 
 <form asp-action="Register" method="post">
     <input name="email" placeholder="Email" />
     <input name="password" type="password" placeholder="Password" />
-    <button type="submit">Register</button>
+    <button type="submit">Rejestracja</button>
 </form>
 
 @if (!ViewData.ModelState.IsValid)
 {
-    <p style="color:red;">Registration failed</p>
+    <p style="color:red;">Rejestracja nieudana</p>
 }

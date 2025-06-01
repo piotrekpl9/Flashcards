@@ -1,15 +1,13 @@
 @page
 @{
     ViewBag.Title = "Home Page";
-}
-@{
     Layout = "_Layout";
 }
 
 <h1>Witamy</h1>
 @if (User.Identity.IsAuthenticated)
 {
-    <h1>Hello @User.Identity.Name</h1>
+    <h1>@User.Identity.Name</h1>
 }
 else
 {
