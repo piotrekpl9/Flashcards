@@ -23,10 +23,14 @@ Layout = "_Layout";
     <div class="mb-3">
         <label asp-for="Front" class="form-label"></label>
         <input asp-for="Front" class="form-control"/>
+        @Html.ValidationMessageFor(m => m.Front, "", new { @class = "text-danger" })
+
     </div>
     <div class="mb-3">
         <label asp-for="Back" class="form-label"></label>
         <input asp-for="Back" class="form-control"/>
+        @Html.ValidationMessageFor(m => m.Back, "", new { @class = "text-danger" })
+
     </div>
     <div class="text-end">
         <button type="submit" class="btn btn-success">Zapisz</button>
